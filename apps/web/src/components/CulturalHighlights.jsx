@@ -106,7 +106,7 @@ const CulturalHighlights = () => {
                         />
                       </div>
                     ))}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-300 z-20 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300 z-20 pointer-events-none" />
                   </div>
                   
                   <div className="p-6 relative z-10">

@@ -117,7 +117,7 @@ const PastEventsPage = () => {
                   Our Journey
                 </GlowingText>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-foreground max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
                 A timeline of our cherished memories and cultural celebrations.
               </p>
             </div>
@@ -181,7 +181,7 @@ const PastEventsPage = () => {
                                   alt={`${event.name} memory ${i + 1}`}
                                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
                               </motion.div>
                             ))}
                           </div>
