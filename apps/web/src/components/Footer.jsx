@@ -1,21 +1,18 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Mail } from 'lucide-react';
 import GlowingText from './GlowingText.jsx';
 
 const Footer = () => {
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Community', href: '#community' },
-    { name: 'Culture', href: '#culture' },
-    { name: 'Events', href: '#events' },
-    { name: 'Contact', href: '#contact' }
+  const contactPersons = [
+    { name: 'Tapan Kumar Nayak', role: 'CEO' },
+    { name: 'Sourov Ghosh', role: 'CFO' },
+    { name: 'Samiran Saha', role: 'Secretary' },
+    { name: 'Snehashis Ghosh', role: 'Assistant Secretary' }
   ];
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Youtube, href: '#', label: 'YouTube' }
+    { icon: Instagram, href: 'https://www.instagram.com/bongotot_bayarea?igsh=NTc4MTIwNjQ2YQ==', label: 'Instagram' }
   ];
 
   const scrollToSection = (e, href) => {
@@ -39,22 +36,17 @@ const Footer = () => {
               Bongotot
             </GlowingText>
             <p className="text-muted-foreground leading-relaxed">
-              Celebrating and preserving Bengali culture, traditions, and heritage for generations to come.
+              Bongotot is a non-profit corporation registered in the state of California.
             </p>
           </div>
 
           <div>
-            <span className="text-lg font-semibold mb-4 block text-foreground">Quick Links</span>
+            <span className="text-lg font-semibold mb-4 block text-foreground">Contact Persons</span>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
+              {contactPersons.map((person) => (
+                <li key={person.name} className="text-muted-foreground flex flex-col">
+                  <span className="font-medium text-foreground">{person.name}</span>
+                  <span className="text-sm opacity-80">{person.role}</span>
                 </li>
               ))}
             </ul>
@@ -62,6 +54,14 @@ const Footer = () => {
 
           <div>
             <span className="text-lg font-semibold mb-4 block text-foreground">Connect With Us</span>
+            <div className="flex items-center gap-3 text-muted-foreground mb-6 group">
+              <div className="w-10 h-10 rounded-lg glass-panel flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all duration-200">
+                <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+              </div>
+              <a href="mailto:bongotot2016@gmail.com" className="hover:text-primary transition-colors duration-200 font-medium">
+                bongotot2016@gmail.com
+              </a>
+            </div>
             <div className="flex space-x-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -70,9 +70,9 @@ const Footer = () => {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-lg glass-panel flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all duration-200 group"
+                    className="w-10 h-10 rounded-lg glass-panel flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all duration-200 group/social"
                   >
-                    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                    <Icon className="w-5 h-5 text-muted-foreground group-hover/social:text-primary transition-colors duration-200" />
                   </a>
                 );
               })}

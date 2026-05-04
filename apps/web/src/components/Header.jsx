@@ -112,7 +112,7 @@ const Header = () => {
                 <Facebook className="w-6 h-6" />
               </a>
               <a 
-                href="https://www.instagram.com" 
+                href="https://www.instagram.com/bongotot_bayarea?igsh=NTc4MTIwNjQ2YQ==" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-foreground/90 hover:text-[#E1306C] transition-all duration-200 p-2"
@@ -185,7 +185,7 @@ const Header = () => {
                   <span className="font-medium text-lg">Facebook</span>
                 </a>
                 <a 
-                  href="https://www.instagram.com" 
+                  href="https://www.instagram.com/bongotot_bayarea?igsh=NTc4MTIwNjQ2YQ==" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-foreground/90 hover:text-[#E1306C] transition-all duration-200"
