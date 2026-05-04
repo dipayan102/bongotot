@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 43 20% 95%;
+    --card: 240 8% 8%;
+    --card-foreground: 43 20% 95%;
+    --popover: 240 8% 8%;
+    --popover-foreground: 43 20% 95%;
+    --primary: 43 65% 53%;
+    --primary-foreground: 240 10% 10%;
+    --secondary: 22 100% 63%;
+    --secondary-foreground: 240 10% 10%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 43 10% 70%;
+    --accent: 100 50% 20%;
+    --accent-foreground: 43 20% 95%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 43 20% 95%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 43 65% 53%;
+    --radius: 0.75rem;
+    
+    --sidebar-background: 240 8% 8%;
+    --sidebar-foreground: 43 20% 95%;
+    --sidebar-primary: 43 65% 53%;
+    --sidebar-primary-foreground: 240 10% 10%;
+    --sidebar-accent: 240 6% 15%;
+    --sidebar-accent-foreground: 43 20% 95%;
+    --sidebar-border: 240 6% 20%;
+    --sidebar-ring: 43 65% 53%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 43 20% 95%;
+    --card: 240 8% 8%;
+    --card-foreground: 43 20% 95%;
+    --popover: 240 8% 8%;
+    --popover-foreground: 43 20% 95%;
+    --primary: 43 65% 53%;
+    --primary-foreground: 240 10% 10%;
+    --secondary: 22 100% 63%;
+    --secondary-foreground: 240 10% 10%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 43 10% 70%;
+    --accent: 100 50% 20%;
+    --accent-foreground: 43 20% 95%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 43 20% 95%;
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 43 65% 53%;
+  }
+}
+
+body {
+  font-family: "Poppins", "Outfit", sans-serif;
+  overflow-x: clip;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-panel-strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .glow-golden {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3),
+                0 0 40px rgba(212, 175, 55, 0.2),
+                0 0 60px rgba(212, 175, 55, 0.1);
+  }
+
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(255, 140, 66, 0.3),
+                0 0 40px rgba(255, 140, 66, 0.2),
+                0 0 60px rgba(255, 140, 66, 0.1);
+  }
+
+  .depth-shadow {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3),
+                0 0 40px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.5),
+                0 0 60px rgba(212, 175, 55, 0.3);
+  }
+}
+
+@keyframes glow-pulse-orange {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 140, 66, 0.3),
+                0 0 40px rgba(255, 140, 66, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 140, 66, 0.5),
+                0 0 60px rgba(255, 140, 66, 0.3);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blur-in {
+  from {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  to {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse-orange {
+  animation: glow-pulse-orange 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-blur-in {
+  animation: blur-in 0.6s ease-out forwards;
+}
