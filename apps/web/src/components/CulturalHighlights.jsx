@@ -6,40 +6,40 @@ import GlowingText from './GlowingText.jsx';
 const CulturalHighlights = () => {
   const highlights = [
     {
-      title: 'Pohela Boishakh',
-      description: 'Bengali New Year celebration with traditional music, dance, and cultural performances',
+      title: 'Pohela Boishakh 2025',
+      description: 'Our vibrant Bengali New Year celebration filled with traditional music, dance, and cultural performances.',
       image: 'https://images.unsplash.com/photo-1675670186055-3fa1564f7077'
     },
     {
-      title: 'Rabindra Sangeet',
-      description: 'Classical music tradition honoring the works of Rabindranath Tagore',
+      title: 'Rabindra Jayanti 2024',
+      description: 'A beautiful evening honoring the works of Rabindranath Tagore through music and poetry.',
       image: 'https://images.unsplash.com/photo-1616388560850-89b6a8df572d'
     },
     {
-      title: 'Traditional Dance',
-      description: 'Preserving classical Bengali dance forms and contemporary interpretations',
+      title: 'Saraswati Puja 2025',
+      description: 'Community members gathered to seek blessings and celebrate knowledge, arts, and culture.',
       image: 'https://images.unsplash.com/photo-1675670186055-3fa1564f7077'
     },
     {
-      title: 'Bengali Cuisine',
-      description: 'Culinary heritage showcasing authentic recipes and cooking traditions',
+      title: 'Bijoya Sammilani 2024',
+      description: 'A grand feast and cultural gathering to mark the end of the festive season.',
       image: 'https://images.unsplash.com/photo-1616388560850-89b6a8df572d'
     }
   ];
 
   return (
-    <section id="culture" className="relative py-24 overflow-hidden bg-background">
+    <section id="past-events" className="relative py-24 overflow-hidden bg-background">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance" style={{ letterSpacing: '-0.02em' }}>
             <GlowingText color="golden" intensity="medium">
-              Cultural highlights
+              Past Events
             </GlowingText>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Immerse yourself in the beauty and richness of Bengali cultural traditions
+            Take a look at memorable moments from our past celebrations and gatherings
           </p>
         </div>
 

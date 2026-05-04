@@ -25,8 +25,8 @@ const Header = () => {
       name: 'Events', 
       href: '#events',
       dropdown: [
-        { name: 'Past Events', href: '#past-events' },
-        { name: 'Upcoming Events', href: '#upcoming-events' }
+        { name: 'Upcoming Events', href: '#upcoming-events' },
+        { name: 'Past Events', href: '#past-events' }
       ]
     },
     { name: 'Sponsors', href: '#sponsors' },
