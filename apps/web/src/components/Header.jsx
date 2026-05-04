@@ -20,26 +20,31 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '/' },
     { 
       name: 'Events', 
-      href: '#events',
+      href: '/#events',
       dropdown: [
-        { name: 'Upcoming Events', href: '#upcoming-events' },
-        { name: 'Past Events', href: '#past-events' }
+        { name: 'Upcoming Events', href: '/#upcoming-events' },
+        { name: 'Past Events', href: '/#past-events' }
       ]
     },
-    { name: 'Sponsors', href: '#sponsors' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Sponsors', href: '/#sponsors' },
+    { name: 'Contact', href: '/#contact' }
   ];
 
-  const scrollToSection = (e, href) => {
-    if (location.pathname !== '/') return; // Only scroll if on homepage
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+  const handleNavClick = (e, href) => {
+    const isHashLink = href.includes('#');
+    const targetPath = href.split('#')[0] || '/';
+    const targetHash = href.split('#')[1];
+
+    if (location.pathname === targetPath && isHashLink) {
+      e.preventDefault();
+      const element = document.getElementById(targetHash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMobileMenuOpen(false);
+      }
     }
   };
 
@@ -73,28 +78,28 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <div key={link.name} className="relative group">
-                <a
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
+                <Link
+                  to={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-foreground/90 hover:text-primary font-medium text-lg transition-all duration-200 flex items-center gap-1"
                 >
                   {link.name}
                   {link.dropdown && <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-                </a>
+                </Link>
                 
                 {link.dropdown && (
                   <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-48">
                     <div className="glass-panel-strong rounded-xl p-2 shadow-xl border border-white/10 flex flex-col gap-1 bg-background/95 backdrop-blur-md">
                       {link.dropdown.map((sublink) => (
-                        <a
+                        <Link
                           key={sublink.name}
-                          href={sublink.href}
-                          onClick={(e) => scrollToSection(e, sublink.href)}
+                          to={sublink.href}
+                          onClick={(e) => handleNavClick(e, sublink.href)}
                           className="px-4 py-2 text-foreground/80 hover:text-primary hover:bg-white/5 rounded-lg transition-all duration-200 text-base whitespace-nowrap"
                         >
                           {sublink.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -149,25 +154,25 @@ const Header = () => {
             <nav className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (
                 <div key={link.name} className="flex flex-col">
-                  <a
-                    href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
+                  <Link
+                    to={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="flex items-center justify-between text-foreground/90 hover:text-primary font-medium text-lg transition-all duration-200 py-2"
                   >
                     {link.name}
                     {link.dropdown && <ChevronDown className="w-5 h-5" />}
-                  </a>
+                  </Link>
                   {link.dropdown && (
                     <div className="pl-4 border-l-2 border-white/10 ml-2 mt-1 flex flex-col space-y-1">
                       {link.dropdown.map((sublink) => (
-                        <a
+                        <Link
                           key={sublink.name}
-                          href={sublink.href}
-                          onClick={(e) => scrollToSection(e, sublink.href)}
+                          to={sublink.href}
+                          onClick={(e) => handleNavClick(e, sublink.href)}
                           className="block text-foreground/70 hover:text-primary font-medium text-base transition-all duration-200 py-2"
                         >
                           {sublink.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
