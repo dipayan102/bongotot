@@ -105,11 +105,11 @@ const PastEventsPage = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <div className="min-h-screen bg-transparent text-foreground flex flex-col">
         <Header />
 
         <main className="flex-1 pt-32 pb-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
+          <div className="absolute inset-0 bg-black/40" />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-24">

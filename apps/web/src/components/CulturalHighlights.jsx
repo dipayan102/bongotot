@@ -76,8 +76,8 @@ const CulturalHighlights = () => {
   };
 
   return (
-    <section id="past-events" className="relative py-24 overflow-hidden bg-background">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
+    <section id="past-events" className="relative py-24 overflow-hidden bg-transparent">
+      <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">

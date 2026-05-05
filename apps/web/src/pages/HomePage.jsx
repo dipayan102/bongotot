@@ -20,7 +20,7 @@ const HomePage = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <div className="min-h-screen bg-transparent text-foreground flex flex-col">
         <Header />
         <main className="flex-1">
           <Hero />

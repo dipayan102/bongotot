@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 
 const CallToAction = () => {
   return (
-    <section id="events" className="relative py-24 overflow-hidden bg-background">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-background" />
+    <section id="events" className="relative py-24 overflow-hidden bg-transparent">
+      <div className="absolute inset-0 bg-black/40" />
       
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] animate-pulse pointer-events-none" />
 
