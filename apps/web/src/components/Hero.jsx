@@ -18,7 +18,7 @@ const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center pt-20 overflow-hidden"
       style={{
-        backgroundImage: 'url(https://horizons-cdn.hostinger.com/f1221676-1231-45d7-acd9-65ec70449579/36e12d3db17cd4fb0d8092e27b32afb6.jpg)',
+        backgroundImage: 'url(/hero_bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
@@ -39,8 +39,8 @@ const Hero = () => {
             className="text-center lg:text-left"
           >
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-balance"
-              style={{ letterSpacing: '-0.02em' }}
+              className="text-6xl md:text-7xl lg:text-8xl font-artistic leading-tight mb-8 text-balance"
+              style={{ letterSpacing: '0.02em' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -53,7 +53,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p 
-              className="text-lg md:text-xl text-foreground mb-8 leading-relaxed max-w-prose mx-auto lg:mx-0 drop-shadow-lg"
+              className="text-2xl md:text-3xl text-foreground mb-10 leading-relaxed max-w-prose mx-auto lg:mx-0 drop-shadow-lg font-artistic"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
