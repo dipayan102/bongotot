@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import GlassmorphismPanel from './GlassmorphismPanel.jsx';
@@ -20,6 +20,8 @@ const CulturalHighlights = () => {
     }
     return () => clearInterval(interval);
   }, [hoveredEvent]);
+
+  const [modalData, setModalData] = useState(null);
 
   const highlights = [
     {
@@ -57,6 +59,22 @@ const CulturalHighlights = () => {
     }
   ];
 
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setModalData(prev => ({
+      ...prev,
+      index: (prev.index - 1 + prev.images.length) % prev.images.length
+    }));
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setModalData(prev => ({
+      ...prev,
+      index: (prev.index + 1) % prev.images.length
+    }));
+  };
+
   return (
     <section id="past-events" className="relative py-24 overflow-hidden bg-background">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
@@ -85,42 +103,55 @@ const CulturalHighlights = () => {
               className="group cursor-pointer"
               onMouseEnter={() => setHoveredEvent(highlight.title)}
               onMouseLeave={() => setHoveredEvent(null)}
+              onClick={() => {
+                const currentImages = highlight.images;
+                const startIndex = currentImageIndex % currentImages.length;
+                setModalData({ images: currentImages, index: startIndex });
+              }}
             >
-              <Link to={`/past-events#${highlight.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} className="block h-full">
-                <GlassmorphismPanel className="overflow-hidden h-full hover:border-primary/40 transition-all duration-300 relative">
-                  <div className="relative h-64 overflow-hidden rounded-t-xl">
-                    {highlight.images.map((img, i) => (
-                      <div 
-                        key={i}
-                        className={`absolute inset-0 transition-opacity duration-1000 ${
-                          (hoveredEvent === highlight.title && i === (currentImageIndex % highlight.images.length)) ||
-                          (hoveredEvent !== highlight.title && i === 0)
-                            ? 'opacity-100 z-10'
-                            : 'opacity-0 z-0'
-                        }`}
-                      >
-                        <img 
-                          src={img}
-                          alt={`${highlight.title} ${i + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                      </div>
-                    ))}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300 z-20 pointer-events-none" />
-                  </div>
-                  
-                  <div className="p-6 relative z-10">
-                    <h3 className="text-2xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+              <GlassmorphismPanel className="overflow-hidden h-full hover:border-primary/40 transition-all duration-300 relative">
+                <div className="relative h-64 overflow-hidden rounded-t-xl">
+                  {highlight.images.map((img, i) => (
+                    <div 
+                      key={i}
+                      className={`absolute inset-0 transition-opacity duration-1000 ${
+                        (hoveredEvent === highlight.title && i === (currentImageIndex % highlight.images.length)) ||
+                        (hoveredEvent !== highlight.title && i === 0)
+                          ? 'opacity-100 z-10'
+                          : 'opacity-0 z-0'
+                      }`}
+                    >
+                      <img 
+                        src={img}
+                        alt={`${highlight.title} ${i + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                  ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300 z-20 pointer-events-none" />
+                </div>
+                
+                <div className="p-6 relative z-10">
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-2xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                       {highlight.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {highlight.description}
-                    </p>
+                    <Link 
+                      to={`/past-events#${highlight.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 hover:bg-primary/10">
+                        View all
+                      </Button>
+                    </Link>
                   </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {highlight.description}
+                  </p>
+                </div>
 
-                  <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/30 rounded-2xl transition-all duration-300 pointer-events-none glow-golden opacity-0 group-hover:opacity-100" />
-                </GlassmorphismPanel>
-              </Link>
+                <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/30 rounded-2xl transition-all duration-300 pointer-events-none glow-golden opacity-0 group-hover:opacity-100" />
+              </GlassmorphismPanel>
             </motion.div>
           ))}
         </div>
@@ -128,12 +159,76 @@ const CulturalHighlights = () => {
         <div className="mt-16 text-center">
           <Link to="/past-events">
             <Button size="lg" className="bg-primary/20 hover:bg-primary/40 text-primary border border-primary/30 font-semibold px-8 py-6 rounded-xl hover:scale-105 transition-all duration-300">
-              See more
+              Our journey from the beginning
             </Button>
           </Link>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence mode="wait">
+        {modalData && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setModalData(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 cursor-zoom-out"
+          >
+            <div className="relative max-w-6xl w-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+              {/* Previous Button */}
+              {modalData.images.length > 1 && (
+                <button
+                  onClick={handlePrev}
+                  className="absolute left-4 z-[110] w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:scale-110 active:scale-95"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+              )}
+
+              <motion.div
+                key={modalData.index}
+                initial={{ scale: 0.9, opacity: 0, x: 20 }}
+                animate={{ scale: 1, opacity: 1, x: 0 }}
+                exit={{ scale: 0.9, opacity: 0, x: -20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl border border-white/10 cursor-default"
+              >
+                <img
+                  src={modalData.images[modalData.index]}
+                  alt="Selected event"
+                  className="w-full h-full object-contain"
+                />
+              </motion.div>
+
+              {/* Next Button */}
+              {modalData.images.length > 1 && (
+                <button
+                  onClick={handleNext}
+                  className="absolute right-4 z-[110] w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:scale-110 active:scale-95"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              )}
+
+              {/* Image Counter */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-white/70 font-medium">
+                {modalData.index + 1} / {modalData.images.length}
+              </div>
+            </div>
+
+            <button
+              onClick={() => setModalData(null)}
+              className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:rotate-90"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
+
+
   );
 };
 

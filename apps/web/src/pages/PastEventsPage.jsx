@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import GlowingText from '@/components/GlowingText.jsx';
@@ -93,6 +93,7 @@ const pastEventsData = [
 
 const PastEventsPage = () => {
   const [hoveredEvent, setHoveredEvent] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <>
@@ -172,16 +173,18 @@ const PastEventsPage = () => {
                                 key={i}
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: hoveredEvent === event.name ? 1 : 0, x: hoveredEvent === event.name ? 0 : -20 }}
-                                whileHover={{ scale: 2.5, zIndex: 50, transition: { duration: 0.3 } }}
+                                whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                                whileTap={{ scale: 0.95 }}
                                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                                className="relative h-32 md:h-40 rounded-xl overflow-hidden shadow-xl shadow-primary/10 border border-primary/20 cursor-zoom-in"
+                                className="relative h-32 md:h-40 rounded-xl overflow-hidden shadow-xl shadow-primary/10 border border-primary/20 cursor-zoom-in group/img"
+                                onClick={() => setSelectedImage(img)}
                               >
                                 <img
                                   src={img}
                                   alt={`${event.name} memory ${i + 1}`}
-                                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                                  className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-300" />
                               </motion.div>
                             ))}
                           </div>
@@ -196,6 +199,40 @@ const PastEventsPage = () => {
         </main>
 
         <Footer />
+
+        {/* Lightbox Modal */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 cursor-zoom-out"
+            >
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative max-w-5xl w-full max-h-[85vh] rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={selectedImage}
+                  alt="Selected event"
+                  className="w-full h-full object-contain"
+                />
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-white transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
