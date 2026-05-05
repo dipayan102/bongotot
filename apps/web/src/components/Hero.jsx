@@ -25,7 +25,7 @@ const Hero = () => {
       }}
       aria-label="Large group photo of Bengali community members wearing colorful traditional attire at a cultural celebration event"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/75 to-background/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/80" />
       
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
@@ -53,7 +53,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p 
-              className="text-lg md:text-xl text-foreground/90 mb-8 leading-relaxed max-w-prose mx-auto lg:mx-0 drop-shadow-md"
+              className="text-lg md:text-xl text-foreground mb-8 leading-relaxed max-w-prose mx-auto lg:mx-0 drop-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}

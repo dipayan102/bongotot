@@ -5,6 +5,7 @@ import Header from '@/components/Header.jsx';
 import Hero from '@/components/Hero.jsx';
 import CommunityFeatures from '@/components/CommunityFeatures.jsx';
 import CulturalHighlights from '@/components/CulturalHighlights.jsx';
+import Sponsors from '@/components/Sponsors.jsx';
 import CallToAction from '@/components/CallToAction.jsx';
 import Footer from '@/components/Footer.jsx';
 
@@ -25,6 +26,7 @@ const HomePage = () => {
           <Hero />
           <CommunityFeatures />
           <CulturalHighlights />
+          <Sponsors />
           <CallToAction />
         </main>
         <Footer />
