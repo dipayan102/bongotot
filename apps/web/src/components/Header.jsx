@@ -61,9 +61,9 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-4 group">
             <motion.img 
-              src="https://horizons-cdn.hostinger.com/f1221676-1231-45d7-acd9-65ec70449579/dba37f32d99197f19a0dcce71ca61a12.png"
-              alt="Bongotot cultural illustration featuring Bengali elements like peacock, bridge, and drums"
-              className="w-20 h-20 md:w-32 md:h-32 object-contain drop-shadow-xl"
+              src="/logo.png"
+              alt="Bongotot Logo"
+              className="w-20 h-20 md:w-32 md:h-32 object-cover rounded-full drop-shadow-xl"
               whileHover={{ rotate: 8, scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             />

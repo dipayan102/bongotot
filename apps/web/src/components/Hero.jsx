@@ -46,10 +46,10 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <GlowingText color="golden" intensity="medium">
-                Celebrate Bengali Culture
+                Bay Area
               </GlowingText>
               <br />
-              <span className="text-foreground drop-shadow-md">Together</span>
+              <span className="text-foreground drop-shadow-md">Bongotot</span>
             </motion.h1>
 
             <motion.p 
@@ -58,7 +58,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Join a vibrant community preserving and celebrating Bengali heritage, traditions, and cultural excellence across generations.
+              Nurturing a sense of belonging and preserving the rich traditions and rituals of Bengali heritage, we create a home away from home in the heart of Silicon Valley.
             </motion.p>
 
             <motion.div
