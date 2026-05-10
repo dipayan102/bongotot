@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import GlassmorphismPanel from './GlassmorphismPanel.jsx';
 import GlowingText from './GlowingText.jsx';
+import { Button } from '@/components/ui/button';
+import { Heart } from 'lucide-react';
 
 const Sponsors = () => {
   return (
@@ -34,6 +36,22 @@ const Sponsors = () => {
               className="w-full h-auto rounded-xl shadow-2xl"
             />
           </GlassmorphismPanel>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-12 text-center"
+        >
+          <Button 
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold group transition-all duration-200 active:scale-[0.98] px-8 py-6 text-lg"
+          >
+            <Heart className="mr-2 w-5 h-5 fill-current group-hover:scale-110 transition-transform duration-200" />
+            Become a Sponsor
+          </Button>
         </motion.div>
       </div>
     </section>

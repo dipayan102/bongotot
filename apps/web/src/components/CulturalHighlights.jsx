@@ -140,7 +140,11 @@ const CulturalHighlights = () => {
                       to={`/past-events#${highlight.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 hover:bg-primary/10">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="border-primary/50 bg-primary/20 text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-sm"
+                      >
                         View all
                       </Button>
                     </Link>
@@ -158,7 +162,10 @@ const CulturalHighlights = () => {
 
         <div className="mt-16 text-center">
           <Link to="/past-events">
-            <Button size="lg" className="bg-primary/20 hover:bg-primary/40 text-primary border border-primary/30 font-semibold px-8 py-6 rounded-xl hover:scale-105 transition-all duration-300">
+            <Button 
+              size="lg" 
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-10 py-7 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/20"
+            >
               Our journey from the beginning
             </Button>
           </Link>

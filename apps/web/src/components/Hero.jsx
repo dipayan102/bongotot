@@ -74,13 +74,6 @@ const Hero = () => {
                 Join Our Community
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-primary/30 bg-background/20 backdrop-blur-sm text-foreground hover:bg-primary/20 font-semibold transition-all duration-200 active:scale-[0.98]"
-              >
-                Learn More
-              </Button>
             </motion.div>
           </motion.div>
 
