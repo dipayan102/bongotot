@@ -30,16 +30,16 @@ const Hero = () => {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            className="text-center lg:text-left mt-8 md:mt-0"
           >
             <motion.h1 
-              className="text-6xl md:text-7xl lg:text-8xl font-artistic leading-tight mb-8 text-balance"
+              className="text-4xl md:text-7xl lg:text-8xl font-artistic leading-tight mb-6 md:mb-8 text-balance"
               style={{ letterSpacing: '0.02em' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p 
-              className="text-2xl md:text-3xl text-foreground mb-10 leading-relaxed max-w-prose mx-auto lg:mx-0 drop-shadow-lg font-artistic"
+              className="text-lg md:text-3xl text-foreground mb-8 md:mb-10 leading-relaxed max-w-prose mx-auto lg:mx-0 drop-shadow-lg font-artistic"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}

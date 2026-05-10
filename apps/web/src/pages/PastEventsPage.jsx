@@ -123,20 +123,37 @@ const PastEventsPage = () => {
               </p>
             </div>
 
-            <div className="relative flex">
+            <div className="relative flex flex-col md:flex-row">
               {/* Timeline Vertical Axis */}
-              <div className="w-1/3 md:w-1/4 border-r-2 border-primary/20 pr-8 py-8 relative">
+              <div className="w-full md:w-1/4 border-l-2 md:border-l-0 md:border-r-2 border-primary/20 ml-6 md:ml-0 pl-6 md:pl-0 md:pr-8 py-8 relative">
                 {pastEventsData.map((yearGroup, yearIndex) => (
-                  <div key={yearGroup.year} className="mb-24 last:mb-0 relative">
-                    <h2 className="text-3xl font-bold text-primary mb-8 sticky top-32">{yearGroup.year}</h2>
-                    <div className="space-y-16">
+                  <div key={yearGroup.year} className="mb-16 md:mb-24 last:mb-0 relative">
+                    <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-8 md:sticky md:top-32">{yearGroup.year}</h2>
+                    <div className="space-y-12 md:space-y-16">
                       {yearGroup.events.map((event, eventIndex) => (
                         <div key={event.name} className="relative group">
                           {/* Timeline dot */}
-                          <div className="absolute -right-[41px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-primary group-hover:bg-primary transition-colors duration-300 z-10" />
-                          <h3 className="text-xl font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                          <div className="absolute -left-[33px] md:left-auto md:-right-[41px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-primary group-hover:bg-primary transition-colors duration-300 z-10" />
+                          <h3 className="text-lg md:text-xl font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                             {event.month}
                           </h3>
+                          
+                          {/* Mobile-only event title and images */}
+                          <div className="md:hidden mt-4 pr-4">
+                            <h4 className="text-xl font-semibold text-foreground mb-4 leading-tight">{event.name}</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              {event.images.map((img, i) => (
+                                <div 
+                                  key={i}
+                                  className="relative aspect-video rounded-xl overflow-hidden border border-primary/20 shadow-xl"
+                                  onClick={() => setSelectedImage(img)}
+                                >
+                                  <img src={img} alt="" className="w-full h-full object-cover" />
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
@@ -144,8 +161,8 @@ const PastEventsPage = () => {
                 ))}
               </div>
 
-              {/* Timeline Horizontal Axis (Events & Pictures) */}
-              <div className="w-2/3 md:w-3/4 pl-12 py-8">
+              {/* Timeline Horizontal Axis (Events & Pictures) - Hidden on mobile, shown on md+ */}
+              <div className="hidden md:block w-3/4 pl-12 py-8">
                 {pastEventsData.map((yearGroup, yearIndex) => (
                   <div key={`events-${yearGroup.year}`} className="mb-24 last:mb-0 pt-[68px]">
                     <div className="space-y-16">
