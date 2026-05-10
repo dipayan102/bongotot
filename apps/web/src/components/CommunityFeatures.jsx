@@ -22,9 +22,21 @@ const CommunityFeatures = () => {
       description: 'Experience a vibrant celebration of Bengali culture and heritage through rhythm, drama, and melody.',
       extendedDescription: 'Bongotot invites you to a curated afternoon of performing arts that brings together the community through rhythm, drama, and melody. This special event features a diverse lineup designed to showcase the "many colors" of our traditions.',
       highlights: [
-        { title: 'Meghmallar (মেঘমল্লার)', desc: 'A soul-stirring presentation of songs and dance sketches inspired by the monsoon.' },
-        { title: 'Lanka Dahan Pala (লঙ্কাদহন পালা)', desc: "An engaging children's play bringing classic mythology to life with youthful energy." },
-        { title: 'Nanan Ronger Dali (নানান রঙের ডালি)', desc: 'A diverse "basket" of cultural performances featuring a variety of local talent.' }
+        { 
+          title: 'Meghmallar (মেঘমল্লার)', 
+          desc: 'A soul-stirring presentation of songs and dance sketches inspired by the monsoon.',
+          image: '/meghmallar.png'
+        },
+        { 
+          title: 'Lanka Dahan Pala (লঙ্কাদহন পালা)', 
+          desc: "An engaging children's play bringing classic mythology to life with youthful energy.",
+          image: '/lanka_dahan.png'
+        },
+        { 
+          title: 'Nanan Ronger Dali (নানান রঙের ডালি)', 
+          desc: 'A diverse "basket" of cultural performances featuring a variety of local talent.',
+          image: '/nanan_ronger_dali.png'
+        }
       ],
       color: 'golden',
       hoverImage: '/tagore.jpg'
@@ -140,7 +152,7 @@ const CommunityFeatures = () => {
                       <Button 
                         variant="outline" 
                         onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                        className={`border-white/30 text-foreground hover:text-primary-foreground font-semibold px-8 h-12 ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
+                        className={`relative z-20 border-white/30 text-foreground hover:text-primary-foreground font-semibold px-8 h-12 ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
                       >
                         {expandedIndex === index ? 'Show less details' : 'Learn more about this event'}
                         <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
@@ -172,7 +184,7 @@ const CommunityFeatures = () => {
             return (
               <div 
                 key={feature.title}
-                className={`transition-all duration-500 ${
+                className={`flex flex-col transition-all duration-500 ${
                   isOther 
                     ? 'opacity-40 scale-[0.98] blur-[1px]' 
                     : 'opacity-100 scale-100'
@@ -189,7 +201,7 @@ const CommunityFeatures = () => {
                     setHoveredIndex(null);
                     setHoveredImage(null);
                   }}
-                  className="relative z-10"
+                  className="relative z-10 h-auto md:h-full"
                 >
                 <div className="flex flex-col h-full group">
                   <div className={`w-14 h-14 rounded-xl ${feature.color === 'orange' ? 'bg-secondary/20' : 'bg-primary/20'} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
@@ -222,18 +234,30 @@ const CommunityFeatures = () => {
                   </div>
                 </div>
               </AnimatedCard>
+              
+              {/* Mobile Detail Expansion (Immediately after each card) */}
+              <div className="md:hidden">
+                <EventDetailPanel 
+                  expandedIndex={expandedIndex} 
+                  setExpandedIndex={setExpandedIndex} 
+                  features={features} 
+                  targetIndex={index} 
+                />
+              </div>
               </div>
             );
           })}
         </div>
 
-        {/* Other Items Expansion (Bottom of grid) */}
-        <EventDetailPanel 
-          expandedIndex={expandedIndex} 
-          setExpandedIndex={setExpandedIndex} 
-          features={features} 
-          excludeIndex={0} 
-        />
+        {/* Desktop Other Items Expansion (Bottom of grid) */}
+        <div className="hidden md:block">
+          <EventDetailPanel 
+            expandedIndex={expandedIndex} 
+            setExpandedIndex={setExpandedIndex} 
+            features={features} 
+            excludeIndex={0} 
+          />
+        </div>
       </div>
     </section>
   );
@@ -248,11 +272,11 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
       {isCorrectPanel && (
         <motion.div 
           key={expandedIndex}
-          initial={{ opacity: 0, height: 0, y: 20 }}
-          animate={{ opacity: 1, height: 'auto', y: 0 }}
-          exit={{ opacity: 0, height: 0, y: 20 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12 overflow-hidden"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.4, ease: "circOut" }}
+          className="relative z-30 mb-12 overflow-hidden"
         >
           {(() => {
             const event = features[expandedIndex];
@@ -324,13 +348,35 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                             }
 
                             return (
-                              <div key={i} className={`p-5 rounded-2xl ${highlightBg} border ${highlightBorder} hover:border-white/20 transition-all duration-300 group/item`}>
-                                <span className={`block font-bold mb-2 text-lg ${isRGB ? highlightColor : 'text-primary'}`}>
-                                  {item.title}
-                                </span>
-                                <span className="text-sm text-muted-foreground leading-relaxed">
-                                  {item.desc}
-                                </span>
+                              <div key={i} className={`flex flex-col overflow-hidden rounded-2xl ${highlightBg} border ${highlightBorder} hover:border-white/20 transition-all duration-300 group/item`}>
+                                {/* Image Placeholder/Space */}
+                                <div className="relative aspect-[16/10] bg-white/5 overflow-hidden">
+                                  {item.image ? (
+                                    <img 
+                                      src={item.image} 
+                                      alt={item.title}
+                                      className="w-full h-full object-cover transition-transform duration-500 group-hover/item:scale-110"
+                                      onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'flex';
+                                      }}
+                                    />
+                                  ) : null}
+                                  <div className="absolute inset-0 flex items-center justify-center bg-white/5 backdrop-blur-sm" style={{ display: item.image ? 'none' : 'flex' }}>
+                                    <div className={`w-12 h-12 rounded-full border-2 border-dashed ${isRGB ? highlightBorder : 'border-white/20'} flex items-center justify-center opacity-40`}>
+                                      <Sparkles className="w-5 h-5" />
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div className="p-5">
+                                  <span className={`block font-bold mb-2 text-lg ${isRGB ? highlightColor : 'text-primary'}`}>
+                                    {item.title}
+                                  </span>
+                                  <span className="text-sm text-muted-foreground leading-relaxed">
+                                    {item.desc}
+                                  </span>
+                                </div>
                               </div>
                             );
                           })}
