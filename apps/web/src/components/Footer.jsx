@@ -15,13 +15,6 @@ const Footer = () => {
     { icon: Instagram, href: 'https://www.instagram.com/bongotot_bayarea?igsh=NTc4MTIwNjQ2YQ==', label: 'Instagram' }
   ];
 
-  const scrollToSection = (e, href) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <footer id="contact" className="relative glass-panel border-t border-white/10 mt-24 bg-transparent z-10">

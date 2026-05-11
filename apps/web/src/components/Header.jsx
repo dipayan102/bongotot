@@ -23,7 +23,7 @@ const Header = () => {
     { name: 'Home', href: '/', icon: Home },
     { 
       name: 'Events', 
-      href: '/#events',
+      href: '/#upcoming-events',
       icon: Calendar,
       dropdown: [
         { name: 'Upcoming Events', href: '/#upcoming-events' },

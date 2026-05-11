@@ -170,7 +170,7 @@ const PastEventsPage = () => {
                         <div
                           key={`event-${event.name}`}
                           id={event.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
-                          className="relative flex items-center gap-8 scroll-mt-32"
+                          className="relative flex items-center gap-8"
                           onMouseEnter={() => setHoveredEvent(event.name)}
                           onMouseLeave={() => setHoveredEvent(null)}
                         >
