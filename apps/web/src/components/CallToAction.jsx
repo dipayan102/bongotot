@@ -56,7 +56,7 @@ const CallToAction = () => {
                 href="#community"
                 className="text-foreground/80 hover:text-primary font-medium underline underline-offset-4 transition-colors duration-200"
               >
-                Learn More
+                Learn more
               </a>
             </div>
 

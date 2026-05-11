@@ -154,7 +154,7 @@ const CommunityFeatures = () => {
                         onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                         className={`relative z-20 border-white/30 text-foreground hover:text-primary-foreground font-semibold px-8 h-12 ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
                       >
-                        {expandedIndex === index ? 'Show less details' : 'Learn more about this event'}
+                        {expandedIndex === index ? 'Show less' : 'Learn more'}
                         <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
                       </Button>
                     </div>
@@ -222,15 +222,27 @@ const CommunityFeatures = () => {
                     {feature.description}
                   </p>
                   
-                  <div className={`mt-6 transition-all duration-300 ${feature.hoverImage ? 'opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0' : 'hidden'}`}>
-                    <Button 
-                      variant="outline" 
-                      onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                      className={`w-full border-white/30 text-foreground hover:text-primary-foreground font-semibold ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
-                    >
-                      {expandedIndex === index ? 'Show less' : 'Know more'}
-                      <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
-                    </Button>
+                  <div className="mt-6">
+                    {feature.hoverImage ? (
+                      <div className={`transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0`}>
+                        <Button 
+                          variant="outline" 
+                          onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                          className={`w-full border-white/30 text-foreground hover:text-primary-foreground font-semibold ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
+                        >
+                          {expandedIndex === index ? 'Show less' : 'Learn more'}
+                          <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
+                        </Button>
+                      </div>
+                    ) : feature.title !== 'Many more to come...' ? (
+                      <Button 
+                        disabled
+                        variant="outline" 
+                        className="w-full border-white/10 text-muted-foreground/50 font-semibold cursor-not-allowed bg-white/5"
+                      >
+                        Coming soon
+                      </Button>
+                    ) : null}
                   </div>
                 </div>
               </AnimatedCard>
