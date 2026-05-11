@@ -63,7 +63,7 @@ const Header = () => {
           : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
       }`}>
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-4 group pointer-events-auto">
+          <Link to="/" className={`flex items-center group pointer-events-auto transition-all duration-300 ${isScrolled ? 'gap-0' : 'gap-4'}`}>
             <motion.img 
               src="/logo.png"
               alt="Bongotot Logo"
@@ -76,8 +76,8 @@ const Header = () => {
             <GlowingText 
               color="golden" 
               intensity="medium"
-              className={`font-bold text-primary transition-all duration-300 group-hover:scale-105 ${
-                isScrolled ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'
+              className={`font-bold text-primary transition-all duration-300 group-hover:scale-105 overflow-hidden whitespace-nowrap ${
+                isScrolled ? 'max-w-0 opacity-0' : 'max-w-[200px] opacity-100 text-3xl md:text-4xl'
               }`}
             >
               Bongotot
