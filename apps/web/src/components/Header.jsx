@@ -53,30 +53,42 @@ const Header = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'glass-panel-strong shadow-lg py-2' 
+          ? 'bg-transparent py-2 pointer-events-none' 
           : 'bg-transparent py-4 md:py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={`transition-all duration-300 ${
+        isScrolled 
+          ? 'w-full px-4 sm:px-6' 
+          : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+      }`}>
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-4 group">
+          <Link to="/" className="flex items-center space-x-4 group pointer-events-auto">
             <motion.img 
               src="/logo.png"
               alt="Bongotot Logo"
-              className="w-20 h-20 md:w-32 md:h-32 object-cover rounded-full drop-shadow-xl"
+              className={`object-cover rounded-full drop-shadow-xl transition-all duration-300 ${
+                isScrolled ? 'w-10 h-10 md:w-12 md:h-12' : 'w-20 h-20 md:w-32 md:h-32'
+              }`}
               whileHover={{ rotate: 8, scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             />
             <GlowingText 
               color="golden" 
               intensity="medium"
-              className="text-3xl md:text-4xl font-bold text-primary transition-all duration-300 group-hover:scale-105"
+              className={`font-bold text-primary transition-all duration-300 group-hover:scale-105 ${
+                isScrolled ? 'text-xl md:text-2xl' : 'text-3xl md:text-4xl'
+              }`}
             >
               Bongotot
             </GlowingText>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className={`hidden md:flex items-center transition-all duration-300 pointer-events-auto ${
+            isScrolled 
+              ? 'glass-panel-strong shadow-lg rounded-full px-4 py-2 space-x-1' 
+              : 'space-x-2'
+          }`}>
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -140,7 +152,7 @@ const Header = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg glass-panel hover:bg-white/10 transition-all duration-200"
+            className="md:hidden p-2 rounded-lg glass-panel hover:bg-white/10 transition-all duration-200 pointer-events-auto"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -159,7 +171,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass-panel-strong border-t border-white/10 overflow-hidden"
+            className="md:hidden glass-panel-strong border-t border-white/10 overflow-hidden pointer-events-auto"
           >
             <nav className="px-4 py-6 space-y-4">
               {navLinks.map((link) => {
