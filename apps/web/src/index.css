@@ -81,13 +81,6 @@ body {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 110px;
-}
-
-@media (min-width: 768px) {
-  html {
-    scroll-padding-top: 160px;
-  }
 }
 
 @layer utilities {
