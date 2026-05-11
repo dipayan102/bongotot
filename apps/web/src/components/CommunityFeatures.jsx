@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, BookOpen, Users, Sparkles, Feather, Sun, ArrowRight, X } from 'lucide-react';
 import AnimatedCard from './AnimatedCard.jsx';
@@ -10,6 +10,26 @@ const CommunityFeatures = () => {
   const [hoveredImage, setHoveredImage] = useState(null);
   
   const [expandedIndex, setExpandedIndex] = useState(null);
+  
+  useEffect(() => {
+    if (expandedIndex !== null) {
+      // Small delay to allow the panel to render and the expansion animation to start
+      const timer = setTimeout(() => {
+        // Find all detail panels for the current index and pick the visible one
+        const id = `event-detail-${expandedIndex}`;
+        const elements = document.querySelectorAll(`[id="${id}"]`);
+        const visibleElement = Array.from(elements).find(el => {
+          // Check if element is visible in the layout (not display: none)
+          return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+        });
+
+        if (visibleElement) {
+          visibleElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [expandedIndex]);
   
   const features = [
     {
@@ -54,7 +74,8 @@ const CommunityFeatures = () => {
       title: 'Durga Puja',
       date: 'October 2026',
       description: 'The heart and soul of our community and our grandest flagship celebration. Join us for the most awaited festival of the year, a vibrant tapestry of tradition, art, and cultural excellence.',
-      color: 'golden'
+      color: 'golden',
+      hoverImage: '/durga.jpg'
     },
     {
       icon: Sparkles,
@@ -224,16 +245,14 @@ const CommunityFeatures = () => {
                   
                   <div className="mt-6">
                     {feature.hoverImage ? (
-                      <div className={`transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0`}>
-                        <Button 
-                          variant="outline" 
-                          onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                          className={`w-full border-white/30 text-foreground hover:text-primary-foreground font-semibold ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
-                        >
-                          {expandedIndex === index ? 'Show less' : 'Learn more'}
-                          <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
-                        </Button>
-                      </div>
+                      <Button 
+                        variant="outline" 
+                        onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                        className={`w-full border-white/30 text-foreground hover:text-primary-foreground font-semibold ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
+                      >
+                        {expandedIndex === index ? 'Show less' : 'Learn more'}
+                        <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
+                      </Button>
                     ) : feature.title !== 'Many more to come...' ? (
                       <Button 
                         disabled
@@ -284,11 +303,12 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
       {isCorrectPanel && (
         <motion.div 
           key={expandedIndex}
+          id={`event-detail-${expandedIndex}`}
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.4, ease: "circOut" }}
-          className="relative z-30 mb-12 overflow-hidden"
+          className="relative z-30 mb-12 overflow-hidden scroll-mt-24"
         >
           {(() => {
             const event = features[expandedIndex];

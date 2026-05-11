@@ -63,7 +63,16 @@ const Header = () => {
           : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
       }`}>
         <div className="flex items-center justify-between">
-          <Link to="/" className={`flex items-center group pointer-events-auto transition-all duration-300 ${isScrolled ? 'gap-0' : 'gap-4'}`}>
+          <Link 
+            to="/" 
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            className={`flex items-center group pointer-events-auto transition-all duration-300 ${isScrolled ? 'gap-0' : 'gap-4'}`}
+          >
             <motion.img 
               src="/logo.png"
               alt="Bongotot Logo"
