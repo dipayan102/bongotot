@@ -76,9 +76,16 @@ const CallToAction = () => {
                       variant="outline"
                       size="lg"
                       className="border-secondary/50 text-secondary hover:bg-secondary/10 font-semibold flex items-center gap-2"
+                      asChild
                     >
-                      <Store className="w-5 h-5" />
-                      Register as vendor
+                      <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSf3ZDg9IkXtqQ7I1U8fL4JupQxV8_K7DCNYk3bVhpGdiHmYMg/viewform?usp=header"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Store className="w-5 h-5" />
+                        Register as vendor
+                      </a>
                     </Button>
                   </motion.div>
                 )}
