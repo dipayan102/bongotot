@@ -1,15 +1,17 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Sparkles, UserPlus, Store } from 'lucide-react';
 import GlassmorphismPanel from './GlassmorphismPanel.jsx';
 import GlowingText from './GlowingText.jsx';
 import { Button } from '@/components/ui/button';
 
 const CallToAction = () => {
+  const [showOptions, setShowOptions] = useState(false);
+
   return (
-    <section id="events" className="relative py-24 overflow-hidden bg-transparent">
+    <section id="join-community" className="relative py-24 overflow-hidden bg-transparent">
       <div className="absolute inset-0 bg-black/40" />
-      
+
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] animate-pulse pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,7 +21,7 @@ const CallToAction = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <GlassmorphismPanel 
+          <GlassmorphismPanel
             variant="strong"
             className="p-12 text-center depth-shadow animate-glow-pulse relative"
           >
@@ -43,21 +45,44 @@ const CallToAction = () => {
               Become part of a thriving Bengali cultural community. Connect with like-minded individuals, participate in events, and celebrate our rich heritage together.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center relative z-10">
-              <Button 
+            <div className="flex flex-col items-center gap-6 relative z-10">
+              <Button
                 size="lg"
+                onClick={() => setShowOptions(!showOptions)}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold group transition-all duration-200 active:scale-[0.98] px-8"
               >
-                Get Started
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                {showOptions ? 'Close Options' : 'Get Started'}
+                <ArrowRight className={`ml-2 w-5 h-5 transition-transform duration-200 ${showOptions ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
               </Button>
-              
-              <a 
-                href="#community"
-                className="text-foreground/80 hover:text-primary font-medium underline underline-offset-4 transition-colors duration-200"
-              >
-                Learn more
-              </a>
+
+              <AnimatePresence>
+                {showOptions && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20, height: 0 }}
+                    animate={{ opacity: 1, y: 0, height: 'auto' }}
+                    exit={{ opacity: 0, y: -20, height: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="flex flex-col sm:flex-row gap-4 w-full justify-center overflow-hidden"
+                  >
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="border-primary/50 text-primary hover:bg-primary/10 font-semibold flex items-center gap-2"
+                    >
+                      <UserPlus className="w-5 h-5" />
+                      Register as member
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="border-secondary/50 text-secondary hover:bg-secondary/10 font-semibold flex items-center gap-2"
+                    >
+                      <Store className="w-5 h-5" />
+                      Register as vendor
+                    </Button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/30 rounded-full blur-3xl animate-pulse pointer-events-none" />

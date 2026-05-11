@@ -11,7 +11,7 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Facebook, href: 'https://www.facebook.com/Baybongotot', label: 'Facebook' },
     { icon: Instagram, href: 'https://www.instagram.com/bongotot_bayarea?igsh=NTc4MTIwNjQ2YQ==', label: 'Instagram' }
   ];
 
@@ -69,6 +69,8 @@ const Footer = () => {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
                     className="w-10 h-10 rounded-lg glass-panel flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-all duration-200 group/social"
                   >
