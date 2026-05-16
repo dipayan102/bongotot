@@ -16,16 +16,10 @@ const Hero = () => {
   return (
     <section 
       id="home"
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
-      style={{
-        backgroundImage: 'url(/hero_bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[url('/hero_bg.jpg')] bg-cover bg-center bg-scroll md:bg-fixed"
       aria-label="Large group photo of Bengali community members wearing colorful traditional attire at a cultural celebration event"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/80" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/80 z-0" />
       
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />

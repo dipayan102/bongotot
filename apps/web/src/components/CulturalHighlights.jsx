@@ -49,9 +49,9 @@ const CulturalHighlights = () => {
       images: getImagesForTitle('Durga Pujo 2024')
     },
     {
-      title: 'Nanan Ronger Bangla 2024',
+      title: 'Nanan Ronge Bangla 2024',
       description: 'A vibrant showcase of Bengali culture through music, dance, and artistic performances.',
-      images: getImagesForTitle('Nanan Ronger Bangla 2024')
+      images: getImagesForTitle('Nanan Ronge Bangla 2024')
     }
   ];
 

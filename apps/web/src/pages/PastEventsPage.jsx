@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/Header.jsx';
@@ -12,6 +13,21 @@ const pastEventsData = getPastEventsData();
 const PastEventsPage = () => {
   const [hoveredEvent, setHoveredEvent] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   return (
     <>
@@ -88,7 +104,7 @@ const PastEventsPage = () => {
                         <div
                           key={`event-${event.name}`}
                           id={event.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
-                          className="relative flex items-center gap-8"
+                          className="relative flex items-center gap-8 scroll-mt-32"
                           onMouseEnter={() => setHoveredEvent(event.name)}
                           onMouseLeave={() => setHoveredEvent(null)}
                         >

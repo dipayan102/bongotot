@@ -89,12 +89,12 @@ const CommunityFeatures = () => {
     <section id="upcoming-events" className="relative py-24 overflow-hidden bg-transparent">
       {/* Dynamic Background Image Layer */}
       <div 
-        className="absolute inset-0 transition-all duration-700 pointer-events-none z-0"
+        className="fixed inset-0 w-full h-full transition-all duration-700 pointer-events-none z-0"
         style={{ 
           backgroundImage: hoveredImage ? `url(${hoveredImage})` : 'none',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: hoveredImage ? 0.5 : 0,
+          opacity: hoveredImage ? 0.35 : 0,
           filter: 'grayscale(0%)'
         }}
       />
