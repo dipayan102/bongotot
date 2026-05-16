@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import GlassmorphismPanel from './GlassmorphismPanel.jsx';
 import GlowingText from './GlowingText.jsx';
 
+import { getAllEventsFlat } from '@/lib/events.js';
+
 const CulturalHighlights = () => {
   const [hoveredEvent, setHoveredEvent] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -23,39 +25,33 @@ const CulturalHighlights = () => {
 
   const [modalData, setModalData] = useState(null);
 
+  const allEvents = getAllEventsFlat();
+
+  const getImagesForTitle = (title) => {
+    const event = allEvents.find(e => e.name === title);
+    return event?.images?.length ? event.images : [];
+  };
+
   const highlights = [
     {
       title: 'Saraswati Puja 2026',
       description: 'Community members gathered to seek blessings and celebrate knowledge, arts, and culture.',
-      images: [
-        '/saraswati_pujo_2026_1.jpg',
-        '/saraswati_pujo_2026_2.jpg'
-      ]
+      images: getImagesForTitle('Saraswati Puja 2026')
     },
     {
       title: 'Durga Pujo 2025',
       description: 'A grand celebration of Durga Puja, capturing the spirit and devotion of our community.',
-      images: [
-        '/durga_pujo_2025_1.jpg',
-        '/durga_pujo_2025_2.jpg'
-      ]
+      images: getImagesForTitle('Durga Pujo 2025')
     },
     {
       title: 'Durga Pujo 2024',
       description: 'Memorable moments from our 2024 Durga Puja festivities, filled with joy and tradition.',
-      images: [
-        '/durga_pujo_2024_2.jpg',
-        '/durga_pujo_2024_1.heic'
-      ]
+      images: getImagesForTitle('Durga Pujo 2024')
     },
     {
       title: 'Nanan Ronger Bangla 2024',
       description: 'A vibrant showcase of Bengali culture through music, dance, and artistic performances.',
-      images: [
-        '/nanan_ronger_bangla_2024_1.jpg',
-        '/nanan_ronger_bangla_2024_2.jpg',
-        '/nanan_ronger_bangla_2024_3.jpg'
-      ]
+      images: getImagesForTitle('Nanan Ronger Bangla 2024')
     }
   ];
 

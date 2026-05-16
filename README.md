@@ -35,3 +35,22 @@ This is a modern **React 18** application bundled with **Vite**.
     *   `install-missing-components.js`: A script likely used to auto-install shadcn/ui components.
     *   `generate-llms.js`: Suggests some integration or documentation generation related to Large Language Models.
 *   **`public/`**: Static assets served directly by Vite.
+
+## 3. Past Events Timeline Configuration
+The **Past Events** timeline automatically discovers and displays images from folders located at `apps/web/src/assets/events/`.
+
+To add a new event to the timeline:
+1. Create a new folder inside `apps/web/src/assets/events/`.
+2. Add your `.jpg`, `.jpeg`, or `.png` images into this new folder.
+
+### Folder Naming Scheme
+The timeline extracts the event **Name**, **Month**, and **Year** automatically from the folder's name based on words separated by underscores (`_`).
+
+*   **Year**: If the folder name contains a 4-digit number (e.g., `2025`), it is parsed as the event year.
+*   **Month**: If it contains an English month name or its 3-letter abbreviation (e.g., `oct` or `october`), it is parsed as the event month.
+*   **Name**: All remaining text in the folder name is capitalized and combined to form the event name.
+
+**Examples:**
+*   `nov_2018` → **November 2018** (Year: 2018, Month: November)
+*   `durga_pujo_oct_2025` → **Durga Pujo 2025** (Year: 2025, Month: October)
+*   `saraswati_puja_2026` → **Saraswati Puja 2026** (Year: 2026, Month: Unknown)

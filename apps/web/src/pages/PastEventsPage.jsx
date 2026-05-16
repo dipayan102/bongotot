@@ -5,91 +5,9 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import GlowingText from '@/components/GlowingText.jsx';
 
-const pastEventsData = [
-  {
-    year: '2026',
-    events: [
-      {
-        month: 'January',
-        name: 'Saraswati Puja 2026',
-        images: [
-          '/saraswati_pujo_2026_1.jpg',
-          '/saraswati_pujo_2026_2.jpg'
-        ]
-      }
-    ]
-  },
-  {
-    year: '2025',
-    events: [
-      {
-        month: 'October',
-        name: 'Durga Pujo 2025',
-        images: [
-          '/durga_pujo_2025_1.jpg',
-          '/durga_pujo_2025_2.jpg'
-        ]
-      }
-    ]
-  },
-  {
-    year: '2024',
-    events: [
-      {
-        month: 'October',
-        name: 'Durga Pujo 2024',
-        images: [
-          '/durga_pujo_2024_1.jpg',
-          '/durga_pujo_2024_2.jpg'
-        ]
-      },
-      {
-        month: 'April',
-        name: 'Nanan Ronger Bangla 2024',
-        images: [
-          '/nanan_ronger_bangla_2024_1.jpg',
-          '/nanan_ronger_bangla_2024_2.jpg',
-          '/nanan_ronger_bangla_2024_3.jpg'
-        ]
-      }
-    ]
-  },
-  {
-    year: '2023',
-    events: [
-      {
-        month: 'October',
-        name: 'Durga Puja 2023',
-        images: [
-          '/durga_puja_2023_1.jpg',
-          '/durga_puja_2023_2.jpg',
-          '/durga_puja_2023_3.jpg',
-          '/durga_puja_2023_4.jpg'
-        ]
-      }
-    ]
-  },
-  {
-    year: '2018',
-    events: [
-      {
-        month: 'May',
-        name: 'Picnic 2018',
-        images: ['/picnic_2018_1.jpg', '/picnic_2018_2.jpg']
-      },
-      {
-        month: 'June',
-        name: 'Kobi Pronaam 2018',
-        images: [
-          '/kobi_pronaam_2018_1.jpg',
-          '/kobi_pronaam_2018_2.jpg',
-          '/kobi_pronaam_2018_3.jpg',
-          '/kobi_pronaam_2018_4.jpg'
-        ]
-      }
-    ]
-  }
-];
+import { getPastEventsData } from '@/lib/events.js';
+
+const pastEventsData = getPastEventsData();
 
 const PastEventsPage = () => {
   const [hoveredEvent, setHoveredEvent] = useState(null);
