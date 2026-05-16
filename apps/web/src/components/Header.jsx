@@ -39,11 +39,17 @@ const Header = () => {
     const targetPath = href.split('#')[0] || '/';
     const targetHash = href.split('#')[1];
 
-    if (location.pathname === targetPath && isHashLink) {
-      e.preventDefault();
-      const element = document.getElementById(targetHash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname === targetPath) {
+      if (isHashLink) {
+        e.preventDefault();
+        const element = document.getElementById(targetHash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setIsMobileMenuOpen(false);
+        }
+      } else {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setIsMobileMenuOpen(false);
       }
     }
