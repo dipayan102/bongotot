@@ -135,10 +135,12 @@ const CommunityFeatures = () => {
                   delay={0}
                   glowColor={feature.color}
                   onMouseEnter={() => {
+                    if (typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches)) return;
                     setHoveredIndex(index);
                     if (feature.hoverImage) setHoveredImage(feature.hoverImage);
                   }}
                   onMouseLeave={() => {
+                    if (typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches)) return;
                     setHoveredIndex(null);
                     setHoveredImage(null);
                   }}
@@ -181,7 +183,7 @@ const CommunityFeatures = () => {
 
                         {index === 0 && (
                           <a
-                            href="#"
+                            href="https://www.youtube.com/live/1276C600bX0?si=XqeA4aMVi15ymZgr"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="relative z-20"
@@ -235,10 +237,12 @@ const CommunityFeatures = () => {
                   delay={index * 0.1}
                   glowColor={feature.color}
                   onMouseEnter={() => {
+                    if (typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches)) return;
                     setHoveredIndex(index);
                     if (feature.hoverImage) setHoveredImage(feature.hoverImage);
                   }}
                   onMouseLeave={() => {
+                    if (typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches)) return;
                     setHoveredIndex(null);
                     setHoveredImage(null);
                   }}
@@ -485,7 +489,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
 
                         {isRGB && (
                           <a
-                            href="#"
+                            href="https://www.youtube.com/live/1276C600bX0?si=XqeA4aMVi15ymZgr"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex gap-4 group/stream hover:bg-white/5 p-2 -m-2 rounded-xl transition-all duration-300"

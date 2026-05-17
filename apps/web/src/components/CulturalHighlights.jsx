@@ -107,22 +107,29 @@ const CulturalHighlights = () => {
             >
               <GlassmorphismPanel className="overflow-hidden h-full hover:border-primary/40 transition-all duration-300 relative">
                 <div className="relative h-64 overflow-hidden rounded-t-xl">
-                  {highlight.images.map((img, i) => (
-                    <div
-                      key={i}
-                      className={`absolute inset-0 transition-opacity duration-1000 ${(hoveredEvent === highlight.title && i === (currentImageIndex % highlight.images.length)) ||
-                          (hoveredEvent !== highlight.title && i === 0)
-                          ? 'opacity-100 z-10'
-                          : 'opacity-0 z-0'
-                        }`}
-                    >
-                      <img
-                        src={img}
-                        alt={`${highlight.title} ${i + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    </div>
-                  ))}
+                  {highlight.images.map((img, i) => {
+                    // Only render subsequent slides when the card is hovered, preventing loading tens of megabytes of raw image bytes on start
+                    const shouldRender = i === 0 || hoveredEvent === highlight.title;
+                    if (!shouldRender) return null;
+
+                    return (
+                      <div
+                        key={i}
+                        className={`absolute inset-0 transition-opacity duration-1000 ${(hoveredEvent === highlight.title && i === (currentImageIndex % highlight.images.length)) ||
+                            (hoveredEvent !== highlight.title && i === 0)
+                            ? 'opacity-100 z-10'
+                            : 'opacity-0 z-0'
+                          }`}
+                      >
+                        <img
+                          src={img}
+                          alt={`${highlight.title} ${i + 1}`}
+                          loading={i === 0 ? "eager" : "lazy"}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+                    );
+                  })}
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300 z-20 pointer-events-none" />
                 </div>
 
