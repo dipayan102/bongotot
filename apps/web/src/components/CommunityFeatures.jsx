@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, BookOpen, Users, Sparkles, Feather, Sun, ArrowRight, X, Clock, MapPin } from 'lucide-react';
+import { Calendar, BookOpen, Users, Sparkles, Feather, Sun, ArrowRight, X, Clock, MapPin, Tv } from 'lucide-react';
 import AnimatedCard from './AnimatedCard.jsx';
 import GlowingText from './GlowingText.jsx';
 import { Button } from '@/components/ui/button';
@@ -169,14 +169,36 @@ const CommunityFeatures = () => {
                         {feature.description}
                       </p>
 
-                      <Button
-                        variant="outline"
-                        onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                        className={`relative z-20 border-white/30 text-foreground hover:text-primary-foreground font-semibold px-8 h-12 ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
-                      >
-                        {expandedIndex === index ? 'Show less' : 'Learn more'}
-                        <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
-                      </Button>
+                      <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <Button
+                          variant="outline"
+                          onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                          className={`relative z-20 border-white/30 text-foreground hover:text-primary-foreground font-semibold px-8 h-12 ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
+                        >
+                          {expandedIndex === index ? 'Show less' : 'Learn more'}
+                          <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
+                        </Button>
+
+                        {index === 0 && (
+                          <a
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="relative z-20"
+                          >
+                            <Button
+                              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 md:px-8 h-12 shadow-lg hover:shadow-red-500/20 active:scale-[0.98] transition-all flex items-center gap-2"
+                            >
+                              <Tv className="w-5 h-5 shrink-0" />
+                              Watch Live
+                              <span className="flex h-2 w-2 relative">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                              </span>
+                            </Button>
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </AnimatedCard>
@@ -456,6 +478,31 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Location</p>
                               <p className="font-semibold text-foreground text-sm leading-snug group-hover/loc:text-primary transition-colors duration-200">
                                 {event.location}
+                              </p>
+                            </div>
+                          </a>
+                        )}
+
+                        {isRGB && (
+                          <a
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex gap-4 group/stream hover:bg-white/5 p-2 -m-2 rounded-xl transition-all duration-300"
+                          >
+                            <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-red-500/10 group-hover/stream:bg-red-500/20 transition-colors duration-300">
+                              <Tv className="w-5 h-5 text-red-400" />
+                            </div>
+                            <div>
+                              <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold flex items-center gap-1.5">
+                                Live Stream
+                                <span className="relative flex h-1.5 w-1.5">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                                </span>
+                              </p>
+                              <p className="font-semibold text-foreground text-sm leading-snug group-hover/stream:text-primary transition-colors duration-200 hover:underline">
+                                Watch Live Stream
                               </p>
                             </div>
                           </a>

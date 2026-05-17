@@ -54,3 +54,19 @@ The timeline extracts the event **Name**, **Month**, and **Year** automatically 
 *   `nov_2018` → **November 2018** (Year: 2018, Month: November)
 *   `durga_pujo_oct_2025` → **Durga Pujo 2025** (Year: 2025, Month: October)
 *   `saraswati_puja_2026` → **Saraswati Puja 2026** (Year: 2026, Month: Unknown)
+
+## 4. Hero Section Upcoming Event Slider
+The **Hero** section displays an automatic looping slider showcasing:
+1. The **Goddess Durga illustration** (displays for **2 seconds**).
+2. The **Upcoming Event Flyer & Logistics Card** (displays for **5 seconds**), displaying the event's name, schedules, timings, and highlighted bullets, alongside a clickable venue link pointing directly to Google Maps.
+
+### How to Change the Upcoming Event Flyer Image
+To update the flyer displayed on the second slide:
+1. Place your new image file in the public directory: `apps/web/public/` (e.g., `my_new_flyer.jpg`).
+2. Open `apps/web/src/components/Hero.jsx` and update the `src` path for the second entry in the `heroImages` array around line 15:
+   ```javascript
+   const heroImages = [
+     { src: '/durga.jpg', alt: 'Goddess Durga illustration' },
+     { src: '/my_new_flyer.jpg', alt: 'Upcoming Event Details' }
+   ];
+   ```
