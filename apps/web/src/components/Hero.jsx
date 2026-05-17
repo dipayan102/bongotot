@@ -133,7 +133,7 @@ const Hero = () => {
 
                     {/* Floating Red Live Stream Button in the bottom corner of the flyer section */}
                     <a
-                      href="https://www.youtube.com/live/1276C600bX0?si=XqeA4aMVi15ymZgr"
+                      href="https://youtube.com/live/qoF4htfNPic?feature=share"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="absolute bottom-3 right-3 z-30"

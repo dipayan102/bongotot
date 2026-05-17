@@ -183,7 +183,7 @@ const CommunityFeatures = () => {
 
                         {index === 0 && (
                           <a
-                            href="https://www.youtube.com/live/1276C600bX0?si=XqeA4aMVi15ymZgr"
+                            href="https://youtube.com/live/qoF4htfNPic?feature=share"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="relative z-20"
@@ -489,7 +489,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
 
                         {isRGB && (
                           <a
-                            href="https://www.youtube.com/live/1276C600bX0?si=XqeA4aMVi15ymZgr"
+                            href="https://youtube.com/live/qoF4htfNPic?feature=share"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex gap-4 group/stream hover:bg-white/5 p-2 -m-2 rounded-xl transition-all duration-300"
