@@ -108,16 +108,15 @@ const CulturalHighlights = () => {
               <GlassmorphismPanel className="overflow-hidden h-full hover:border-primary/40 transition-all duration-300 relative">
                 <div className="relative h-64 overflow-hidden rounded-t-xl">
                   {highlight.images.map((img, i) => (
-                    <div 
+                    <div
                       key={i}
-                      className={`absolute inset-0 transition-opacity duration-1000 ${
-                        (hoveredEvent === highlight.title && i === (currentImageIndex % highlight.images.length)) ||
-                        (hoveredEvent !== highlight.title && i === 0)
+                      className={`absolute inset-0 transition-opacity duration-1000 ${(hoveredEvent === highlight.title && i === (currentImageIndex % highlight.images.length)) ||
+                          (hoveredEvent !== highlight.title && i === 0)
                           ? 'opacity-100 z-10'
                           : 'opacity-0 z-0'
-                      }`}
+                        }`}
                     >
-                      <img 
+                      <img
                         src={img}
                         alt={`${highlight.title} ${i + 1}`}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -126,19 +125,19 @@ const CulturalHighlights = () => {
                   ))}
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300 z-20 pointer-events-none" />
                 </div>
-                
+
                 <div className="p-6 relative z-10">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="text-2xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                       {highlight.title}
                     </h3>
-                    <Link 
+                    <Link
                       to={`/past-events#${highlight.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
+                      <Button
+                        variant="outline"
+                        size="sm"
                         className="border-primary/50 bg-primary/20 text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 backdrop-blur-sm"
                       >
                         View all
@@ -158,8 +157,8 @@ const CulturalHighlights = () => {
 
         <div className="mt-16 text-center">
           <Link to="/past-events">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-10 py-7 rounded-xl hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/20"
             >
               Our journey from the beginning

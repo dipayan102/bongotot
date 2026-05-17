@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, BookOpen, Users, Sparkles, Feather, Sun, ArrowRight, X } from 'lucide-react';
+import { Calendar, BookOpen, Users, Sparkles, Feather, Sun, ArrowRight, X, Clock, MapPin } from 'lucide-react';
 import AnimatedCard from './AnimatedCard.jsx';
 import GlowingText from './GlowingText.jsx';
 import { Button } from '@/components/ui/button';
@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 const CommunityFeatures = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [hoveredImage, setHoveredImage] = useState(null);
-  
+
   const [expandedIndex, setExpandedIndex] = useState(null);
-  
+
   useEffect(() => {
     if (expandedIndex !== null) {
       // Small delay to allow the panel to render and the expansion animation to start
@@ -30,30 +30,30 @@ const CommunityFeatures = () => {
       return () => clearTimeout(timer);
     }
   }, [expandedIndex]);
-  
+
   const features = [
     {
       icon: Feather,
       title: 'Nanan Ronge Bangla',
-      subtitle: 'নানান রঙের বাংলা',
+      subtitle: 'নানান রঙে বাংলা',
       date: 'May 17, 2026',
       time: '3:00 PM – 6:00 PM',
       location: 'Ruggieri Senior Center, 33997 Alvarado-Niles Rd, Union City, CA',
       description: 'Experience a vibrant celebration of Bengali culture and heritage through rhythm, drama, and melody.',
       extendedDescription: 'Bongotot invites you to a curated afternoon of performing arts that brings together the community through rhythm, drama, and melody. This special event features a diverse lineup designed to showcase the "many colors" of our traditions.',
       highlights: [
-        { 
-          title: 'Meghmallar (মেঘমল্লার)', 
+        {
+          title: 'Meghmallar (মেঘমল্লার)',
           desc: 'A soul-stirring presentation of songs and dance sketches inspired by the monsoon.',
           image: '/meghmallar.png'
         },
-        { 
-          title: 'Lanka Dahan Pala (লঙ্কাদহন পালা)', 
+        {
+          title: 'Lanka Dahan Pala (লঙ্কাদহন পালা)',
           desc: "An engaging children's play bringing classic mythology to life with youthful energy.",
           image: '/lanka_dahan.png'
         },
-        { 
-          title: 'Nanan Ronger Dali (নানান রঙের ডালি)', 
+        {
+          title: 'Nanan Ronger Dali (নানান রঙের ডালি)',
           desc: 'A diverse "basket" of cultural performances featuring a variety of local talent.',
           image: '/nanan_ronger_dali.png'
         }
@@ -88,9 +88,9 @@ const CommunityFeatures = () => {
   return (
     <section id="upcoming-events" className="relative py-24 overflow-hidden bg-transparent">
       {/* Dynamic Background Image Layer */}
-      <div 
+      <div
         className="fixed inset-0 w-full h-full transition-all duration-700 pointer-events-none z-0"
-        style={{ 
+        style={{
           backgroundImage: hoveredImage ? `url(${hoveredImage})` : 'none',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -99,7 +99,7 @@ const CommunityFeatures = () => {
         }}
       />
       <div className="absolute inset-0 bg-black/40 z-0" />
-      
+
       <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-[100px] z-0" />
       <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] z-0" />
 
@@ -123,14 +123,13 @@ const CommunityFeatures = () => {
             const Icon = feature.icon;
             const isHovered = hoveredIndex === index;
             const isOther = hoveredIndex !== null && !isHovered;
-            
+
             return (
-              <div 
-                className={`transition-all duration-500 ${
-                  isOther 
-                    ? 'opacity-40 scale-[0.98] blur-[1px]' 
+              <div
+                className={`transition-all duration-500 ${isOther
+                    ? 'opacity-40 scale-[0.98] blur-[1px]'
                     : 'opacity-100 scale-100'
-                }`}
+                  }`}
               >
                 <AnimatedCard
                   delay={0}
@@ -149,7 +148,7 @@ const CommunityFeatures = () => {
                     <div className={`w-20 h-20 rounded-2xl ${feature.color === 'orange' ? 'bg-secondary/20' : 'bg-primary/20'} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className={`w-10 h-10 ${feature.color === 'orange' ? 'text-secondary' : 'text-primary'}`} />
                     </div>
-                    
+
                     <div className="flex-1 text-center md:text-left">
                       <div className="flex flex-col md:flex-row md:items-baseline gap-2 mb-3">
                         <h3 className="text-3xl font-bold text-foreground">
@@ -159,19 +158,19 @@ const CommunityFeatures = () => {
                           <span className="text-xl text-muted-foreground font-medium">({feature.subtitle})</span>
                         )}
                       </div>
-                      
+
                       {feature.date && (
                         <p className={`text-lg font-bold mb-4 ${feature.color === 'orange' ? 'text-secondary' : 'text-primary'}`}>
                           {feature.date} • {feature.time}
                         </p>
                       )}
-                      
+
                       <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                         {feature.description}
                       </p>
-                      
-                      <Button 
-                        variant="outline" 
+
+                      <Button
+                        variant="outline"
                         onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                         className={`relative z-20 border-white/30 text-foreground hover:text-primary-foreground font-semibold px-8 h-12 ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
                       >
@@ -187,11 +186,11 @@ const CommunityFeatures = () => {
         </div>
 
         {/* Featured Item Expansion (Immediately after top row) */}
-        <EventDetailPanel 
-          expandedIndex={expandedIndex} 
-          setExpandedIndex={setExpandedIndex} 
-          features={features} 
-          targetIndex={0} 
+        <EventDetailPanel
+          expandedIndex={expandedIndex}
+          setExpandedIndex={setExpandedIndex}
+          features={features}
+          targetIndex={0}
         />
 
         {/* Bottom Row: Other Events */}
@@ -201,15 +200,14 @@ const CommunityFeatures = () => {
             const Icon = feature.icon;
             const isHovered = hoveredIndex === index;
             const isOther = hoveredIndex !== null && !isHovered;
-            
+
             return (
-              <div 
+              <div
                 key={feature.title}
-                className={`flex flex-col transition-all duration-500 ${
-                  isOther 
-                    ? 'opacity-40 scale-[0.98] blur-[1px]' 
+                className={`flex flex-col transition-all duration-500 ${isOther
+                    ? 'opacity-40 scale-[0.98] blur-[1px]'
                     : 'opacity-100 scale-100'
-                }`}
+                  }`}
               >
                 <AnimatedCard
                   delay={index * 0.1}
@@ -224,57 +222,57 @@ const CommunityFeatures = () => {
                   }}
                   className="relative z-10 h-auto md:h-full"
                 >
-                <div className="flex flex-col h-full group">
-                  <div className={`w-14 h-14 rounded-xl ${feature.color === 'orange' ? 'bg-secondary/20' : 'bg-primary/20'} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className={`w-7 h-7 ${feature.color === 'orange' ? 'text-secondary' : 'text-primary'}`} />
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-1 text-foreground">
-                    {feature.title}
-                  </h3>
-                  
-                  {feature.date && (
-                    <p className={`text-sm font-bold mb-3 ${feature.color === 'orange' ? 'text-secondary' : 'text-primary'}`}>
-                      {feature.date}
+                  <div className="flex flex-col h-full group">
+                    <div className={`w-14 h-14 rounded-xl ${feature.color === 'orange' ? 'bg-secondary/20' : 'bg-primary/20'} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className={`w-7 h-7 ${feature.color === 'orange' ? 'text-secondary' : 'text-primary'}`} />
+                    </div>
+
+                    <h3 className="text-xl font-semibold mb-1 text-foreground">
+                      {feature.title}
+                    </h3>
+
+                    {feature.date && (
+                      <p className={`text-sm font-bold mb-3 ${feature.color === 'orange' ? 'text-secondary' : 'text-primary'}`}>
+                        {feature.date}
+                      </p>
+                    )}
+
+                    <p className="text-muted-foreground leading-relaxed flex-1">
+                      {feature.description}
                     </p>
-                  )}
-                  
-                  <p className="text-muted-foreground leading-relaxed flex-1">
-                    {feature.description}
-                  </p>
-                  
-                  <div className="mt-6">
-                    {feature.hoverImage ? (
-                      <Button 
-                        variant="outline" 
-                        onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                        className={`w-full border-white/30 text-foreground hover:text-primary-foreground font-semibold ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
-                      >
-                        {expandedIndex === index ? 'Show less' : 'Learn more'}
-                        <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
-                      </Button>
-                    ) : feature.title !== 'Many more to come...' ? (
-                      <Button 
-                        disabled
-                        variant="outline" 
-                        className="w-full border-white/10 text-muted-foreground/50 font-semibold cursor-not-allowed bg-white/5"
-                      >
-                        Coming soon
-                      </Button>
-                    ) : null}
+
+                    <div className="mt-6">
+                      {feature.hoverImage ? (
+                        <Button
+                          variant="outline"
+                          onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                          className={`w-full border-white/30 text-foreground hover:text-primary-foreground font-semibold ${feature.color === 'orange' ? 'hover:bg-secondary border-secondary/30' : 'hover:bg-primary border-primary/30'} ${expandedIndex === index ? (feature.color === 'orange' ? 'bg-secondary' : 'bg-primary') : ''}`}
+                        >
+                          {expandedIndex === index ? 'Show less' : 'Learn more'}
+                          <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
+                        </Button>
+                      ) : feature.title !== 'Many more to come...' ? (
+                        <Button
+                          disabled
+                          variant="outline"
+                          className="w-full border-white/10 text-muted-foreground/50 font-semibold cursor-not-allowed bg-white/5"
+                        >
+                          Coming soon
+                        </Button>
+                      ) : null}
+                    </div>
                   </div>
+                </AnimatedCard>
+
+                {/* Mobile Detail Expansion (Immediately after each card) */}
+                <div className="md:hidden">
+                  <EventDetailPanel
+                    expandedIndex={expandedIndex}
+                    setExpandedIndex={setExpandedIndex}
+                    features={features}
+                    targetIndex={index}
+                  />
                 </div>
-              </AnimatedCard>
-              
-              {/* Mobile Detail Expansion (Immediately after each card) */}
-              <div className="md:hidden">
-                <EventDetailPanel 
-                  expandedIndex={expandedIndex} 
-                  setExpandedIndex={setExpandedIndex} 
-                  features={features} 
-                  targetIndex={index} 
-                />
-              </div>
               </div>
             );
           })}
@@ -282,11 +280,11 @@ const CommunityFeatures = () => {
 
         {/* Desktop Other Items Expansion (Bottom of grid) */}
         <div className="hidden md:block">
-          <EventDetailPanel 
-            expandedIndex={expandedIndex} 
-            setExpandedIndex={setExpandedIndex} 
-            features={features} 
-            excludeIndex={0} 
+          <EventDetailPanel
+            expandedIndex={expandedIndex}
+            setExpandedIndex={setExpandedIndex}
+            features={features}
+            excludeIndex={0}
           />
         </div>
       </div>
@@ -295,13 +293,13 @@ const CommunityFeatures = () => {
 };
 
 const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetIndex, excludeIndex }) => {
-  const isCorrectPanel = (targetIndex !== undefined && expandedIndex === targetIndex) || 
-                        (excludeIndex !== undefined && expandedIndex !== null && expandedIndex !== excludeIndex);
+  const isCorrectPanel = (targetIndex !== undefined && expandedIndex === targetIndex) ||
+    (excludeIndex !== undefined && expandedIndex !== null && expandedIndex !== excludeIndex);
 
   return (
     <AnimatePresence mode="wait">
       {isCorrectPanel && (
-        <motion.div 
+        <motion.div
           key={expandedIndex}
           id={`event-detail-${expandedIndex}`}
           initial={{ opacity: 0, height: 0 }}
@@ -314,7 +312,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
             const event = features[expandedIndex];
             const isRGB = event.title === 'Nanan Ronge Bangla';
             const accentColor = event.color === 'orange' ? 'secondary' : 'primary';
-            
+
             return (
               <div className={`relative p-8 rounded-3xl bg-black/40 border border-white/10 backdrop-blur-xl ${isRGB ? 'shadow-[0_0_50px_-12px_rgba(255,255,255,0.1)]' : ''}`}>
                 {/* Animated Accent Bar */}
@@ -325,7 +323,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                     <div className={`w-full h-full bg-${accentColor}`} />
                   )}
                 </div>
-                
+
                 {/* RGB Background Glow */}
                 {isRGB && (
                   <>
@@ -334,14 +332,14 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                     <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
                   </>
                 )}
-                
+
                 <div className="flex flex-col lg:flex-row gap-12 relative z-10">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-6">
                       <div className={`w-14 h-14 rounded-2xl ${isRGB ? 'bg-gradient-to-br from-red-500/20 via-green-500/20 to-blue-500/20' : (event.color === 'orange' ? 'bg-secondary/20' : 'bg-primary/20')} flex items-center justify-center p-[2px]`}>
                         <div className="w-full h-full rounded-[14px] bg-black/40 flex items-center justify-center">
-                          {React.createElement(event.icon, { 
-                            className: `w-7 h-7 ${isRGB ? 'text-white' : (event.color === 'orange' ? 'text-secondary' : 'text-primary')}` 
+                          {React.createElement(event.icon, {
+                            className: `w-7 h-7 ${isRGB ? 'text-white' : (event.color === 'orange' ? 'text-secondary' : 'text-primary')}`
                           })}
                         </div>
                       </div>
@@ -372,7 +370,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                             let highlightColor = "primary";
                             let highlightBg = "bg-white/5";
                             let highlightBorder = "border-white/5";
-                            
+
                             if (isRGB) {
                               if (i === 0) { highlightColor = "text-blue-400"; highlightBg = "bg-blue-500/5"; highlightBorder = "border-blue-500/20"; }
                               if (i === 1) { highlightColor = "text-red-400"; highlightBg = "bg-red-500/5"; highlightBorder = "border-red-500/20"; }
@@ -384,8 +382,8 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                                 {/* Image Placeholder/Space */}
                                 <div className="relative aspect-[16/10] bg-white/5 overflow-hidden">
                                   {item.image ? (
-                                    <img 
-                                      src={item.image} 
+                                    <img
+                                      src={item.image}
                                       alt={item.title}
                                       className="w-full h-full object-cover transition-transform duration-500 group-hover/item:scale-110"
                                       onError={(e) => {
@@ -400,7 +398,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div className="p-5">
                                   <span className={`block font-bold mb-2 text-lg ${isRGB ? highlightColor : 'text-primary'}`}>
                                     {item.title}
@@ -420,7 +418,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                   <div className="lg:w-80 space-y-6">
                     <div className={`p-6 rounded-3xl bg-white/5 border border-white/5 space-y-6 relative overflow-hidden ${isRGB ? 'border-white/10' : ''}`}>
                       <h4 className="text-lg font-semibold text-foreground">Event Logistics</h4>
-                      
+
                       <div className="space-y-5">
                         <div className="flex gap-4">
                           <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isRGB ? 'bg-red-500/10' : 'bg-primary/10'}`}>
@@ -431,11 +429,11 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                             <p className="font-semibold text-foreground">{event.date}</p>
                           </div>
                         </div>
-                        
+
                         {event.time && (
                           <div className="flex gap-4">
                             <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isRGB ? 'bg-green-500/10' : 'bg-primary/10'}`}>
-                              <BookOpen className={`w-5 h-5 ${isRGB ? 'text-green-400' : 'text-primary'}`} />
+                              <Clock className={`w-5 h-5 ${isRGB ? 'text-green-400' : 'text-primary'}`} />
                             </div>
                             <div>
                               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Time</p>
@@ -443,17 +441,24 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                             </div>
                           </div>
                         )}
-                        
+
                         {event.location && (
-                          <div className="flex gap-4">
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isRGB ? 'bg-blue-500/10' : 'bg-primary/10'}`}>
-                              <Users className={`w-5 h-5 ${isRGB ? 'text-blue-400' : 'text-primary'}`} />
+                          <a
+                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex gap-4 group/loc hover:bg-white/5 p-2 -m-2 rounded-xl transition-all duration-300"
+                          >
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 ${isRGB ? 'bg-blue-500/10 group-hover/loc:bg-blue-500/20' : 'bg-primary/10 group-hover/loc:bg-primary/20'}`}>
+                              <MapPin className={`w-5 h-5 ${isRGB ? 'text-blue-400' : 'text-primary'}`} />
                             </div>
                             <div>
                               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Location</p>
-                              <p className="font-semibold text-foreground text-sm leading-snug">{event.location}</p>
+                              <p className="font-semibold text-foreground text-sm leading-snug group-hover/loc:text-primary transition-colors duration-200">
+                                {event.location}
+                              </p>
                             </div>
-                          </div>
+                          </a>
                         )}
                       </div>
 
@@ -466,7 +471,7 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                   </div>
                 </div>
 
-                <button 
+                <button
                   onClick={() => setExpandedIndex(null)}
                   className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors text-muted-foreground hover:text-foreground z-20"
                 >
