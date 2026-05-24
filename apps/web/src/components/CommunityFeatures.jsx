@@ -37,7 +37,7 @@ const CommunityFeatures = () => {
       title: 'Community Picnic',
       subtitle: 'চড়ুইভাতি',
       date: 'June 16, 2026',
-      time: '11:00 AM – 4:00 PM',
+      time: '10 am till Dusk',
       location: 'Oak Knoll Group Area, Milpitas, CA 95035',
       locationUrl: 'https://maps.app.goo.gl/ZzYr2c4MJXV4QFaU9?g_st=iw',
       description: 'Annual outdoor gathering with traditional games, authentic Bengali cuisine, and family fun.',

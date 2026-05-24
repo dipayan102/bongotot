@@ -149,7 +149,7 @@ const Hero = () => {
                     <div className="space-y-1.5 bg-black/35 p-3 rounded-lg border border-white/5 backdrop-blur-sm">
                       <div className="flex items-center gap-2">
                         <Clock className="w-3.5 h-3.5 text-primary shrink-0" />
-                        <span className="text-xs font-semibold text-foreground">June 16, 2026 • 11:00 AM – 4:00 PM</span>
+                        <span className="text-xs font-semibold text-foreground">June 16, 2026 • 10 am till Dusk</span>
                       </div>
                       <a
                         href="https://maps.app.goo.gl/ZzYr2c4MJXV4QFaU9?g_st=iw"
