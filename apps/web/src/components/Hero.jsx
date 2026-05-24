@@ -14,7 +14,7 @@ const Hero = () => {
 
   const heroImages = [
     { src: '/durga.jpg', alt: 'Goddess Durga illustration' },
-    { src: '/my_new_flyer.jpg', alt: 'Upcoming Event Details' }
+    { src: '/picnic.jpg', alt: 'Upcoming Community Picnic Flyer' }
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -120,36 +120,16 @@ const Hero = () => {
                   <div className="relative h-[48%] w-full bg-black/45 p-3 flex items-center justify-center border-b border-white/10 overflow-hidden">
                     {/* Dimmed Blurred background for beautiful texture */}
                     <img
-                      src="/my_new_flyer.jpg"
+                      src="/picnic.jpg"
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover blur-md brightness-[0.2] scale-110 pointer-events-none"
                     />
                     {/* Sharp properly contained foreground image */}
                     <img
-                      src="/my_new_flyer.jpg"
-                      alt="Nanan Ronge Bangla Event Flyer"
+                      src="/picnic.jpg"
+                      alt="Community Picnic Event Flyer"
                       className="relative z-10 max-h-full max-w-full object-contain rounded-lg shadow-lg border border-white/5"
                     />
-
-                    {/* Floating Red Live Stream Button in the bottom corner of the flyer section */}
-                    <a
-                      href="https://youtube.com/live/qoF4htfNPic?feature=share"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute bottom-3 right-3 z-30"
-                    >
-                      <Button
-                        size="sm"
-                        className="bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg hover:shadow-red-500/20 active:scale-[0.98] transition-all flex items-center gap-1.5 h-9 rounded-full border border-white/10 px-4"
-                      >
-                        <Tv className="w-4 h-4 shrink-0" />
-                        <span>Watch Live</span>
-                        <span className="flex h-1.5 w-1.5 relative">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
-                        </span>
-                      </Button>
-                    </a>
                   </div>
 
                   {/* Bottom Half: Key Details */}
@@ -159,26 +139,26 @@ const Hero = () => {
                         UPCOMING EVENT
                       </span>
                       <div>
-                        <h3 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-green-400 to-blue-400 font-artistic leading-tight drop-shadow-md">
-                          Nanan Ronge Bangla
+                        <h3 className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500 font-artistic leading-tight drop-shadow-md">
+                          Community Picnic
                         </h3>
-                        <p className="text-[10px] text-muted-foreground italic font-medium -mt-0.5">নানান রঙে বাংলা</p>
+                        <p className="text-[10px] text-muted-foreground italic font-medium -mt-0.5">চড়ুইভাতি</p>
                       </div>
                     </div>
                     
                     <div className="space-y-1.5 bg-black/35 p-3 rounded-lg border border-white/5 backdrop-blur-sm">
                       <div className="flex items-center gap-2">
                         <Clock className="w-3.5 h-3.5 text-primary shrink-0" />
-                        <span className="text-xs font-semibold text-foreground">May 17, 2026 • 3:00 PM – 6:00 PM</span>
+                        <span className="text-xs font-semibold text-foreground">June 16, 2026 • 11:00 AM – 4:00 PM</span>
                       </div>
                       <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Ruggieri Senior Center, 33997 Alvarado-Niles Rd, Union City, CA")}`}
+                        href="https://maps.app.goo.gl/ZzYr2c4MJXV4QFaU9?g_st=iw"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-start gap-2 text-foreground hover:text-primary transition-colors duration-200"
                       >
                         <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                        <span className="text-xs font-semibold leading-snug hover:underline">Ruggieri Senior Center, Union City</span>
+                        <span className="text-xs font-semibold leading-snug hover:underline">Oak Knoll Group Area, Milpitas</span>
                       </a>
                     </div>
 
@@ -188,16 +168,12 @@ const Hero = () => {
                       </p>
                       <ul className="grid grid-cols-1 gap-0.5">
                         <li className="flex items-center gap-2 text-xs text-foreground/90 font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
-                          <span className="truncate">Meghmallar (Monsoon Songs & Dance)</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                          <span className="truncate">Outdoor Bengali Delicacy Cooking</span>
                         </li>
                         <li className="flex items-center gap-2 text-xs text-foreground/90 font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
-                          <span className="truncate">Lanka Dahan Pala (Children's Play)</span>
-                        </li>
-                        <li className="flex items-center gap-2 text-xs text-foreground/90 font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0" />
-                          <span className="truncate">Nanan Ronger Dali (Cultural basket)</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0" />
+                          <span className="truncate">Games and Adda</span>
                         </li>
                       </ul>
                     </div>

@@ -33,39 +33,27 @@ const CommunityFeatures = () => {
 
   const features = [
     {
-      icon: Feather,
-      title: 'Nanan Ronge Bangla',
-      subtitle: 'নানান রঙে বাংলা',
-      date: 'May 17, 2026',
-      time: '3:00 PM – 6:00 PM',
-      location: 'Ruggieri Senior Center, 33997 Alvarado-Niles Rd, Union City, CA',
-      description: 'Experience a vibrant celebration of Bengali culture and heritage through rhythm, drama, and melody.',
-      extendedDescription: 'Bongotot invites you to a curated afternoon of performing arts that brings together the community through rhythm, drama, and melody. This special event features a diverse lineup designed to showcase the "many colors" of our traditions.',
-      highlights: [
-        {
-          title: 'Meghmallar (মেঘমল্লার)',
-          desc: 'A soul-stirring presentation of songs and dance sketches inspired by the monsoon.',
-          image: '/meghmallar.png'
-        },
-        {
-          title: 'Lanka Dahan Pala (লঙ্কাদহন পালা)',
-          desc: "An engaging children's play bringing classic mythology to life with youthful energy.",
-          image: '/lanka_dahan.png'
-        },
-        {
-          title: 'Nanan Ronger Dali (নানান রঙের ডালি)',
-          desc: 'A diverse "basket" of cultural performances featuring a variety of local talent.',
-          image: '/nanan_ronger_dali.png'
-        }
-      ],
-      color: 'golden',
-      hoverImage: '/tagore.jpg'
-    },
-    {
       icon: Sun,
       title: 'Community Picnic',
+      subtitle: 'চড়ুইভাতি',
       date: 'June 16, 2026',
+      time: '11:00 AM – 4:00 PM',
+      location: 'Oak Knoll Group Area, Milpitas, CA 95035',
+      locationUrl: 'https://maps.app.goo.gl/ZzYr2c4MJXV4QFaU9?g_st=iw',
       description: 'Annual outdoor gathering with traditional games, authentic Bengali cuisine, and family fun.',
+      extendedDescription: 'Bongotot\'s annual Community Picnic is a beautiful day of warm conversations, fun-filled traditional games, casual unplugged music, and a delicious spread of authentic Bengali food under the California sun.',
+      highlights: [
+        {
+          title: 'Outdoor Bengali Delicacy Cooking',
+          desc: 'Savor and participate in preparing authentic Bengali picnic favorites in the open air.',
+          image: '/picnic.jpg'
+        },
+        {
+          title: 'Games and Adda',
+          desc: 'Join in traditional outdoor games, sports, and warm, friendly conversations.',
+          image: '/games_and_adda.jpg'
+        }
+      ],
       color: 'orange',
       hoverImage: '/picnic.jpg'
     },
@@ -180,26 +168,6 @@ const CommunityFeatures = () => {
                           {expandedIndex === index ? 'Show less' : 'Learn more'}
                           <ArrowRight className={`ml-2 w-4 h-4 transition-transform duration-300 ${expandedIndex === index ? 'rotate-90' : ''}`} />
                         </Button>
-
-                        {index === 0 && (
-                          <a
-                            href="https://youtube.com/live/qoF4htfNPic?feature=share"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="relative z-20"
-                          >
-                            <Button
-                              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 md:px-8 h-12 shadow-lg hover:shadow-red-500/20 active:scale-[0.98] transition-all flex items-center gap-2"
-                            >
-                              <Tv className="w-5 h-5 shrink-0" />
-                              Watch Live
-                              <span className="flex h-2 w-2 relative">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                              </span>
-                            </Button>
-                          </a>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -218,7 +186,7 @@ const CommunityFeatures = () => {
         />
 
         {/* Bottom Row: Other Events */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 group/container">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto group/container">
           {features.slice(1).map((feature, idx) => {
             const index = idx + 1;
             const Icon = feature.icon;
@@ -336,41 +304,27 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
         >
           {(() => {
             const event = features[expandedIndex];
-            const isRGB = event.title === 'Nanan Ronge Bangla';
             const accentColor = event.color === 'orange' ? 'secondary' : 'primary';
 
             return (
-              <div className={`relative p-8 rounded-3xl bg-black/40 border border-white/10 backdrop-blur-xl ${isRGB ? 'shadow-[0_0_50px_-12px_rgba(255,255,255,0.1)]' : ''}`}>
+              <div className="relative p-8 rounded-3xl bg-black/40 border border-white/10 backdrop-blur-xl">
                 {/* Animated Accent Bar */}
-                <div className={`absolute top-0 left-0 w-full h-1.5 overflow-hidden`}>
-                  {isRGB ? (
-                    <div className="w-full h-full bg-gradient-to-r from-red-500 via-green-500 to-blue-500 animate-gradient-x" />
-                  ) : (
-                    <div className={`w-full h-full bg-${accentColor}`} />
-                  )}
+                <div className="absolute top-0 left-0 w-full h-1.5 overflow-hidden">
+                  <div className={`w-full h-full bg-${accentColor}`} />
                 </div>
-
-                {/* RGB Background Glow */}
-                {isRGB && (
-                  <>
-                    <div className="absolute -top-24 -left-24 w-64 h-64 bg-red-500/10 rounded-full blur-[100px] pointer-events-none" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-500/5 rounded-full blur-[120px] pointer-events-none" />
-                    <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
-                  </>
-                )}
 
                 <div className="flex flex-col lg:flex-row gap-12 relative z-10">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-6">
-                      <div className={`w-14 h-14 rounded-2xl ${isRGB ? 'bg-gradient-to-br from-red-500/20 via-green-500/20 to-blue-500/20' : (event.color === 'orange' ? 'bg-secondary/20' : 'bg-primary/20')} flex items-center justify-center p-[2px]`}>
+                      <div className={`w-14 h-14 rounded-2xl ${event.color === 'orange' ? 'bg-secondary/20' : 'bg-primary/20'} flex items-center justify-center p-[2px]`}>
                         <div className="w-full h-full rounded-[14px] bg-black/40 flex items-center justify-center">
                           {React.createElement(event.icon, {
-                            className: `w-7 h-7 ${isRGB ? 'text-white' : (event.color === 'orange' ? 'text-secondary' : 'text-primary')}`
+                            className: `w-7 h-7 ${event.color === 'orange' ? 'text-secondary' : 'text-primary'}`
                           })}
                         </div>
                       </div>
                       <div>
-                        <h3 className={`text-3xl font-bold ${isRGB ? 'bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-green-400 to-blue-400' : 'text-foreground'}`}>
+                        <h3 className="text-3xl font-bold text-foreground">
                           {event.title}
                         </h3>
                         {event.subtitle && (
@@ -388,20 +342,14 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                     {event.highlights && (
                       <div className="space-y-6">
                         <h4 className="text-xl font-semibold text-foreground flex items-center gap-2">
-                          <Sparkles className={`w-5 h-5 ${isRGB ? 'text-yellow-400' : 'text-primary'}`} />
+                          <Sparkles className="w-5 h-5 text-primary" />
                           Event Highlights
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                           {event.highlights.map((item, i) => {
-                            let highlightColor = "primary";
-                            let highlightBg = "bg-white/5";
-                            let highlightBorder = "border-white/5";
-
-                            if (isRGB) {
-                              if (i === 0) { highlightColor = "text-blue-400"; highlightBg = "bg-blue-500/5"; highlightBorder = "border-blue-500/20"; }
-                              if (i === 1) { highlightColor = "text-red-400"; highlightBg = "bg-red-500/5"; highlightBorder = "border-red-500/20"; }
-                              if (i === 2) { highlightColor = "text-green-400"; highlightBg = "bg-green-500/5"; highlightBorder = "border-green-500/20"; }
-                            }
+                            const highlightColor = event.color === 'orange' ? 'text-secondary' : 'text-primary';
+                            const highlightBg = "bg-white/5";
+                            const highlightBorder = "border-white/5";
 
                             return (
                               <div key={i} className={`flex flex-col overflow-hidden rounded-2xl ${highlightBg} border ${highlightBorder} hover:border-white/20 transition-all duration-300 group/item`}>
@@ -419,14 +367,14 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                                     />
                                   ) : null}
                                   <div className="absolute inset-0 flex items-center justify-center bg-white/5 backdrop-blur-sm" style={{ display: item.image ? 'none' : 'flex' }}>
-                                    <div className={`w-12 h-12 rounded-full border-2 border-dashed ${isRGB ? highlightBorder : 'border-white/20'} flex items-center justify-center opacity-40`}>
+                                    <div className="w-12 h-12 rounded-full border-2 border-dashed border-white/20 flex items-center justify-center opacity-40">
                                       <Sparkles className="w-5 h-5" />
                                     </div>
                                   </div>
                                 </div>
 
                                 <div className="p-5">
-                                  <span className={`block font-bold mb-2 text-lg ${isRGB ? highlightColor : 'text-primary'}`}>
+                                  <span className={`block font-bold mb-2 text-lg ${highlightColor}`}>
                                     {item.title}
                                   </span>
                                   <span className="text-sm text-muted-foreground leading-relaxed">
@@ -442,13 +390,13 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                   </div>
 
                   <div className="lg:w-80 space-y-6">
-                    <div className={`p-6 rounded-3xl bg-white/5 border border-white/5 space-y-6 relative overflow-hidden ${isRGB ? 'border-white/10' : ''}`}>
+                    <div className="p-6 rounded-3xl bg-white/5 border border-white/5 space-y-6 relative overflow-hidden">
                       <h4 className="text-lg font-semibold text-foreground">Event Logistics</h4>
 
                       <div className="space-y-5">
                         <div className="flex gap-4">
-                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isRGB ? 'bg-red-500/10' : 'bg-primary/10'}`}>
-                            <Calendar className={`w-5 h-5 ${isRGB ? 'text-red-400' : 'text-primary'}`} />
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-${accentColor}/10`}>
+                            <Calendar className={`w-5 h-5 text-${accentColor}`} />
                           </div>
                           <div>
                             <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Date</p>
@@ -458,8 +406,8 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
 
                         {event.time && (
                           <div className="flex gap-4">
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isRGB ? 'bg-green-500/10' : 'bg-primary/10'}`}>
-                              <Clock className={`w-5 h-5 ${isRGB ? 'text-green-400' : 'text-primary'}`} />
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-${accentColor}/10`}>
+                              <Clock className={`w-5 h-5 text-${accentColor}`} />
                             </div>
                             <div>
                               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Time</p>
@@ -470,13 +418,13 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
 
                         {event.location && (
                           <a
-                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
+                            href={event.locationUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex gap-4 group/loc hover:bg-white/5 p-2 -m-2 rounded-xl transition-all duration-300"
                           >
-                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 ${isRGB ? 'bg-blue-500/10 group-hover/loc:bg-blue-500/20' : 'bg-primary/10 group-hover/loc:bg-primary/20'}`}>
-                              <MapPin className={`w-5 h-5 ${isRGB ? 'text-blue-400' : 'text-primary'}`} />
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300 bg-${accentColor}/10 group-hover/loc:bg-${accentColor}/20`}>
+                              <MapPin className={`w-5 h-5 text-${accentColor}`} />
                             </div>
                             <div>
                               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Location</p>
@@ -486,36 +434,11 @@ const EventDetailPanel = ({ expandedIndex, setExpandedIndex, features, targetInd
                             </div>
                           </a>
                         )}
-
-                        {isRGB && (
-                          <a
-                            href="https://youtube.com/live/qoF4htfNPic?feature=share"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex gap-4 group/stream hover:bg-white/5 p-2 -m-2 rounded-xl transition-all duration-300"
-                          >
-                            <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-red-500/10 group-hover/stream:bg-red-500/20 transition-colors duration-300">
-                              <Tv className="w-5 h-5 text-red-400" />
-                            </div>
-                            <div>
-                              <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold flex items-center gap-1.5">
-                                Live Stream
-                                <span className="relative flex h-1.5 w-1.5">
-                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
-                                </span>
-                              </p>
-                              <p className="font-semibold text-foreground text-sm leading-snug group-hover/stream:text-primary transition-colors duration-200 hover:underline">
-                                Watch Live Stream
-                              </p>
-                            </div>
-                          </a>
-                        )}
                       </div>
 
-                      <div className={`pt-6 border-t border-white/10 ${isRGB ? 'bg-gradient-to-r from-red-500/5 via-green-500/5 to-blue-500/5 -mx-6 px-6 -mb-6 pb-6' : ''}`}>
+                      <div className="pt-6 border-t border-white/10">
                         <p className="text-sm text-muted-foreground leading-relaxed italic">
-                          Join us for an unforgettable afternoon of community and creativity. We look forward to seeing you there!
+                          A beautiful day of community, games, and culinary delight. Note: This event is currently fully booked.
                         </p>
                       </div>
                     </div>

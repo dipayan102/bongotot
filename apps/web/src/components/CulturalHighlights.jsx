@@ -34,6 +34,11 @@ const CulturalHighlights = () => {
 
   const highlights = [
     {
+      title: 'Nanan Ronge Bangla 2026',
+      description: 'A vibrant showcase of Bengali culture through music, dance, and artistic performances.',
+      images: getImagesForTitle('Nanan Ronge Bangla 2026')
+    },
+    {
       title: 'Saraswati Puja 2026',
       description: 'Community members gathered to seek blessings and celebrate knowledge, arts, and culture.',
       images: getImagesForTitle('Saraswati Puja 2026')
@@ -47,11 +52,6 @@ const CulturalHighlights = () => {
       title: 'Durga Pujo 2024',
       description: 'Memorable moments from our 2024 Durga Puja festivities, filled with joy and tradition.',
       images: getImagesForTitle('Durga Pujo 2024')
-    },
-    {
-      title: 'Nanan Ronge Bangla 2024',
-      description: 'A vibrant showcase of Bengali culture through music, dance, and artistic performances.',
-      images: getImagesForTitle('Nanan Ronge Bangla 2024')
     }
   ];
 
