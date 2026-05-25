@@ -36,7 +36,7 @@ const CommunityFeatures = () => {
       icon: Sun,
       title: 'Community Picnic',
       subtitle: 'চড়ুইভাতি',
-      date: 'June 16, 2026',
+      date: 'June 14, 2026',
       time: '10 am till Dusk',
       location: 'Oak Knoll Group Area, Milpitas, CA 95035',
       locationUrl: 'https://maps.app.goo.gl/ZzYr2c4MJXV4QFaU9?g_st=iw',
@@ -63,7 +63,7 @@ const CommunityFeatures = () => {
       date: 'October 2026',
       description: 'The heart and soul of our community and our grandest flagship celebration. Join us for the most awaited festival of the year, a vibrant tapestry of tradition, art, and cultural excellence.',
       color: 'golden',
-      hoverImage: '/durga.jpg'
+      hoverImage: '/durga_event.jpg'
     },
     {
       icon: Sparkles,
